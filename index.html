@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>История России</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <span class="nav-icon">📚</span>
+                <span class="nav-title">История России</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link active">Главная</a></li>
+                <li><a href="ancient-rus.html" class="nav-link">Древняя Русь</a></li>
+                <li><a href="moscow-state.html" class="nav-link">Московское государство</a></li>
+                <li><a href="russian-empire.html" class="nav-link">Российская империя</a></li>
+                <li><a href="soviet-period.html" class="nav-link">Советский период</a></li>
+                <li><a href="modern-russia.html" class="nav-link">Современная Россия</a></li>
+            </ul>
+            <div class="nav-search">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="🔍 Поиск по истории России..." id="searchInput">
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">История России</h1>
+            <p class="hero-subtitle">Многовековой путь великой страны от Древней Руси до современности</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main">
+        <section class="periods-section">
+            <div class="container">
+                <h2 class="section-title">Исторические периоды</h2>
+                <p class="section-description">Исследуйте ключевые периоды российской истории, от основания древнерусского государства до современной России.</p>
+                
+                <div class="periods-grid">
+                    <div class="period-card ancient-rus">
+                        <div class="period-image">
+                            <img src="img/ДревРусь.jpg" alt="Древняя Русь - Православные храмы">
+                            <div class="period-overlay">
+                                <span class="period-icon">⛪</span>
+                            </div>
+                        </div>
+                        <div class="period-content">
+                            <h3 class="period-title">Древняя Русь</h3>
+                            <p class="period-dates">IX-XIII века</p>
+                            <p class="period-description">Формирование государственности, принятие христианства, расцвет Киевской Руси. Период становления русской православной культуры и традиций.</p>
+                            <a href="ancient-rus.html" class="period-link">Подробнее →</a>
+                        </div>
+                    </div>
+
+                    <div class="period-card moscow-state">
+                        <div class="period-image">
+                            <img src="img/РусьМос.jpg" alt="Московское государство - Кремль и воинская слава">
+                            <div class="period-overlay">
+                                <span class="period-icon">⚔️</span>
+                            </div>
+                        </div>
+                        <div class="period-content">
+                            <h3 class="period-title">Московское государство</h3>
+                            <p class="period-dates">XIII-XVII века</p>
+                            <p class="period-description">Монгольское иго, возвышение Москвы, Смутное время, первые Романовы. Период борьбы за независимость под знаменем Святого Георгия.</p>
+                            <a href="moscow-state.html" class="period-link">Подробнее →</a>
+                        </div>
+                    </div>
+
+                    <div class="period-card russian-empire">
+                        <div class="period-image">
+                            <img src="img/Империя.jpg" alt="Российская империя - Имперская архитектура и величие">
+                            <div class="period-overlay">
+                                <span class="period-icon">👑</span>
+                            </div>
+                        </div>
+                        <div class="period-content">
+                            <h3 class="period-title">Российская империя</h3>
+                            <p class="period-dates">XVIII-начало ХХ века</p>
+                            <p class="period-description">Реформы Петра I, Екатерина Великая, Отечественная война 1812 года, революции. Эпоха величия под имперским триколором.</p>
+                            <a href="russian-empire.html" class="period-link">Подробнее →</a>
+                        </div>
+                    </div>
+
+                    <div class="period-card soviet-period">
+                        <div class="period-image">
+                            <img src="img/СССР.webp" alt="Советский период - Красная звезда и индустриализация">
+                            <div class="period-overlay">
+                                <span class="period-icon">⭐</span>
+                            </div>
+                        </div>
+                        <div class="period-content">
+                            <h3 class="period-title">Советский период</h3>
+                            <p class="period-dates">1917-1991 годы</p>
+                            <p class="period-description">Революция, Гражданская война, индустриализация, Великая Отечественная война, холодная война. Эпоха под красной звездой и серпом с молотом.</p>
+                            <a href="soviet-period.html" class="period-link">Подробнее →</a>
+                        </div>
+                    </div>
+
+                    <div class="period-card modern-russia">
+                        <div class="period-image">
+                            <img src="img/Россия.webp" alt="Современная Россия - Современная архитектура и развитие">
+                            <div class="period-overlay">
+                                <span class="period-icon">🏛️</span>
+                            </div>
+                        </div>
+                        <div class="period-content">
+                            <h3 class="period-title">Современная Россия</h3>
+                            <p class="period-dates">1991-наши дни</p>
+                            <p class="period-description">Распад СССР, становление новой государственности, экономические и политические преобразования. Новая эра под современным триколором.</p>
+                            <a href="modern-russia.html" class="period-link">Подробнее →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">История России</h3>
+                    <p class="footer-description">Исследуйте богатую и многогранную историю России от древних времен до современности.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">📺</a>
+                        <a href="#" class="social-link">📷</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Разделы</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="ancient-rus.html">Древняя Русь</a></li>
+                        <li><a href="moscow-state.html">Московское государство</a></li>
+                        <li><a href="russian-empire.html">Российская империя</a></li>
+                        <li><a href="soviet-period.html">Советский период</a></li>
+                        <li><a href="modern-russia.html">Современная Россия</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Информация</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">О проекте</a></li>
+                        <li><a href="#">Источники</a></li>
+                        <li><a href="#">Контакты</a></li>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 История России. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // База данных для поиска
+        const searchData = [
+            // Древняя Русь
+            { title: "Рюрик", description: "Основатель династии Рюриковичей", type: "Личность", url: "ancient-rus.html", keywords: "рюрик варяг князь основатель династия" },
+            { title: "Владимир Святой", description: "Креститель Руси", type: "Личность", url: "ancient-rus.html", keywords: "владимир святой крещение руси христианство" },
+            { title: "Ярослав Мудрый", description: "Создатель Русской Правды", type: "Личность", url: "ancient-rus.html", keywords: "ярослав мудрый русская правда законы" },
+            { title: "Александр Невский", description: "Защитник русских земель", type: "Личность", url: "ancient-rus.html", keywords: "александр невский ледовое побоище невская битва" },
+            { title: "Крещение Руси", description: "Принятие христианства в 988 году", type: "Событие", url: "ancient-rus.html", keywords: "крещение руси христианство православие 988" },
+            { title: "Киевская Русь", description: "Древнерусское государство", type: "Период", url: "ancient-rus.html", keywords: "киевская русь древняя русь государство" },
+
+            // Московское государство
+            { title: "Иван III", description: "Объединитель русских земель", type: "Личность", url: "moscow-state.html", keywords: "иван третий объединение москва" },
+            { title: "Иван Грозный", description: "Первый русский царь", type: "Личность", url: "moscow-state.html", keywords: "иван грозный царь опричнина" },
+            { title: "Куликовская битва", description: "Победа над монголо-татарами", type: "Событие", url: "moscow-state.html", keywords: "куликовская битва дмитрий донской мамай" },
+            { title: "Смутное время", description: "Период кризиса в России", type: "Период", url: "moscow-state.html", keywords: "смутное время кризис интервенция" },
+            { title: "Михаил Романов", description: "Первый царь из династии Романовых", type: "Личность", url: "moscow-state.html", keywords: "михаил романов династия романовых" },
+
+            // Российская империя
+            { title: "Петр I", description: "Первый российский император", type: "Личность", url: "russian-empire.html", keywords: "петр первый император реформы петербург" },
+            { title: "Екатерина II", description: "Великая императрица", type: "Личность", url: "russian-empire.html", keywords: "екатерина вторая великая золотой век" },
+            { title: "Отечественная война 1812", description: "Война с Наполеоном", type: "Событие", url: "russian-empire.html", keywords: "отечественная война 1812 наполеон бородино" },
+            { title: "Александр II", description: "Царь-освободитель", type: "Личность", url: "russian-empire.html", keywords: "александр второй освободитель крепостное право" },
+            { title: "Николай II", description: "Последний российский император", type: "Личность", url: "russian-empire.html", keywords: "николай второй последний император революция" },
+
+            // Советский период
+            { title: "Ленин", description: "Основатель Советского государства", type: "Личность", url: "soviet-period.html", keywords: "ленин революция большевики ссср" },
+            { title: "Сталин", description: "Генеральный секретарь ЦК ВКП(б)", type: "Личность", url: "soviet-period.html", keywords: "сталин индустриализация великая отечественная" },
+            { title: "Великая Отечественная война", description: "Война с фашистской Германией", type: "Событие", url: "soviet-period.html", keywords: "великая отечественная война 1941 1945 победа" },
+            { title: "Хрущев", description: "Первый секретарь ЦК КПСС", type: "Личность", url: "soviet-period.html", keywords: "хрущев десталинизация космос" },
+            { title: "Горбачев", description: "Последний лидер СССР", type: "Личность", url: "soviet-period.html", keywords: "горбачев перестройка гласность распад ссср" },
+
+            // Современная Россия
+            { title: "Ельцин", description: "Первый президент России", type: "Личность", url: "modern-russia.html", keywords: "ельцин президент реформы 90е" },
+            { title: "Путин", description: "Президент Российской Федерации", type: "Личность", url: "modern-russia.html", keywords: "путин президент современная россия" },
+            { title: "Распад СССР", description: "Конец Советского Союза", type: "Событие", url: "modern-russia.html", keywords: "распад ссср 1991 независимость" },
+            { title: "Конституция 1993", description: "Основной закон России", type: "Событие", url: "modern-russia.html", keywords: "конституция 1993 основной закон" }
+        ];
+
+        // Функция поиска
+        function performSearch(query) {
+            if (query.length < 2) {
+                hideSuggestions();
+                return;
+            }
+
+            const results = searchData.filter(item => 
+                item.title.toLowerCase().includes(query.toLowerCase()) ||
+                item.description.toLowerCase().includes(query.toLowerCase()) ||
+                item.keywords.toLowerCase().includes(query.toLowerCase())
+            );
+
+            showSuggestions(results);
+        }
+
+        // Показать предложения
+        function showSuggestions(results) {
+            const suggestionsContainer = document.getElementById('searchSuggestions');
+            
+            if (results.length === 0) {
+                suggestionsContainer.innerHTML = '<div class="search-suggestion">Ничего не найдено</div>';
+            } else {
+                suggestionsContainer.innerHTML = results.map(item => `
+                    <div class="search-suggestion" onclick="navigateTo('${item.url}')">
+                        <div class="search-suggestion-title">${item.title}</div>
+                        <div class="search-suggestion-description">${item.description}</div>
+                        <div class="search-suggestion-type">${item.type}</div>
+                    </div>
+                `).join('');
+            }
+            
+            suggestionsContainer.style.display = 'block';
+        }
+
+        // Скрыть предложения
+        function hideSuggestions() {
+            document.getElementById('searchSuggestions').style.display = 'none';
+        }
+
+        // Переход на страницу
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+
+        // Инициализация поиска
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const suggestionsContainer = document.getElementById('searchSuggestions');
+
+            searchInput.addEventListener('input', function() {
+                performSearch(this.value);
+            });
+
+            searchInput.addEventListener('focus', function() {
+                if (this.value.length >= 2) {
+                    performSearch(this.value);
+                }
+            });
+
+            // Скрыть предложения при клике вне поля поиска
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.search-container')) {
+                    hideSuggestions();
+                }
+            });
+
+            // Обработка клавиш
+            searchInput.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    hideSuggestions();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
