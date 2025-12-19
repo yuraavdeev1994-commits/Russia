@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контакты - История России</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                <span class="nav-icon">📚</span>
+                <span class="nav-title">История России</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Главная</a></li>
+                <li><a href="ancient-rus.html" class="nav-link">Древняя Русь</a></li>
+                <li><a href="moscow-state.html" class="nav-link">Московское государство</a></li>
+                <li><a href="russian-empire.html" class="nav-link">Российская империя</a></li>
+                <li><a href="soviet-period.html" class="nav-link">Советский период</a></li>
+                <li><a href="modern-russia.html" class="nav-link">Современная Россия</a></li>
+            </ul>
+            <div class="nav-search">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="🔍 Поиск по истории России..." id="searchInput">
+                    <div class="search-suggestions" id="searchSuggestions"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero modern-russia">
+        <div class="container">
+            <h1 class="page-title">Контакты</h1>
+            <p class="page-subtitle">Свяжитесь с нами для вопросов и предложений</p>
+        </div>
+    </section>
+
+    <!-- Breadcrumbs -->
+    <div class="breadcrumbs">
+        <div class="breadcrumb">
+            <a href="index.html">Главная</a> > Контакты
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="container">
+            <div class="form-container animate-fade-in">
+                <h2 style="margin-bottom: var(--spacing-lg); color: var(--color-primary);">Форма обратной связи</h2>
+                
+                <form id="contactForm" novalidate>
+                    <div class="form-group">
+                        <label for="name" class="form-label">
+                            Имя <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="name" 
+                            name="name" 
+                            class="form-input" 
+                            placeholder="Введите ваше имя"
+                            required
+                        >
+                        <div class="form-error" id="nameError">Пожалуйста, введите ваше имя</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">
+                            Email <span class="required">*</span>
+                        </label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            class="form-input" 
+                            placeholder="example@mail.com"
+                            required
+                        >
+                        <div class="form-error" id="emailError">Пожалуйста, введите корректный email</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">
+                            Телефон
+                        </label>
+                        <input 
+                            type="tel" 
+                            id="phone" 
+                            name="phone" 
+                            class="form-input" 
+                            placeholder="+7 (999) 123-45-67"
+                            pattern="[\+]?[0-9\s\-\(\)]+"
+                        >
+                        <div class="form-error" id="phoneError">Пожалуйста, введите корректный номер телефона</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address" class="form-label">
+                            Адрес
+                        </label>
+                        <select id="address" name="address" class="form-select">
+                            <option value="">Выберите регион</option>
+                            <option value="moscow">Москва</option>
+                            <option value="spb">Санкт-Петербург</option>
+                            <option value="novosibirsk">Новосибирск</option>
+                            <option value="ekaterinburg">Екатеринбург</option>
+                            <option value="kazan">Казань</option>
+                            <option value="nizhny-novgorod">Нижний Новгород</option>
+                            <option value="chelyabinsk">Челябинск</option>
+                            <option value="samara">Самара</option>
+                            <option value="omsk">Омск</option>
+                            <option value="rostov">Ростов-на-Дону</option>
+                            <option value="ufa">Уфа</option>
+                            <option value="krasnoyarsk">Красноярск</option>
+                            <option value="voronezh">Воронеж</option>
+                            <option value="perm">Пермь</option>
+                            <option value="volgograd">Волгоград</option>
+                            <option value="other">Другой регион</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject" class="form-label">
+                            Тема сообщения
+                        </label>
+                        <select id="subject" name="subject" class="form-select">
+                            <option value="">Выберите тему</option>
+                            <option value="question">Вопрос по истории</option>
+                            <option value="suggestion">Предложение</option>
+                            <option value="error">Сообщить об ошибке</option>
+                            <option value="other">Другое</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">
+                            Сообщение <span class="required">*</span>
+                        </label>
+                        <textarea 
+                            id="message" 
+                            name="message" 
+                            class="form-textarea" 
+                            placeholder="Введите ваше сообщение..."
+                            required
+                        ></textarea>
+                        <div class="form-error" id="messageError">Пожалуйста, введите сообщение</div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="form-checkbox-group">
+                            <input 
+                                type="checkbox" 
+                                id="agree" 
+                                name="agree" 
+                                class="form-checkbox"
+                                required
+                            >
+                            <label for="agree" class="form-label" style="margin-bottom: 0;">
+                                Я согласен с обработкой персональных данных <span class="required">*</span>
+                            </label>
+                        </div>
+                        <div class="form-error" id="agreeError">Необходимо согласие на обработку данных</div>
+                    </div>
+
+                    <button type="submit" class="form-button">Отправить сообщение</button>
+                    
+                    <div class="form-success" id="formSuccess">
+                        ✓ Сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">История России</h3>
+                    <p class="footer-description">Исследуйте богатую и многогранную историю России от древних времен до современности.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-link">📘</a>
+                        <a href="#" class="social-link">🐦</a>
+                        <a href="#" class="social-link">📺</a>
+                        <a href="#" class="social-link">📷</a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Разделы</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="ancient-rus.html">Древняя Русь</a></li>
+                        <li><a href="moscow-state.html">Московское государство</a></li>
+                        <li><a href="russian-empire.html">Российская империя</a></li>
+                        <li><a href="soviet-period.html">Советский период</a></li>
+                        <li><a href="modern-russia.html">Современная Россия</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Информация</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">О проекте</a></li>
+                        <li><a href="#">Источники</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Подписка на новости</h3>
+                    <p class="footer-description">Получайте уведомления о новых статьях и обновлениях</p>
+                    <form id="subscribeForm" class="footer-subscribe" style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                        <input 
+                            type="email" 
+                            id="subscribeEmail" 
+                            placeholder="Ваш email" 
+                            required
+                            style="flex: 1; padding: 0.5rem; border: 1px solid #34495e; border-radius: 6px; background: #34495e; color: white; font-size: 0.875rem;"
+                        >
+                        <button 
+                            type="submit" 
+                            style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease;"
+                        >
+                            Подписаться
+                        </button>
+                    </form>
+                    <div id="subscribeSuccess" style="display: none; color: #10b981; margin-top: 0.5rem; font-size: 0.875rem;">
+                        ✓ Вы успешно подписались!
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 История России. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // База данных для поиска (та же, что на других страницах)
+        const searchData = [
+            { title: "Рюрик", description: "Основатель династии Рюриковичей", type: "Личность", url: "ancient-rus.html", keywords: "рюрик варяг князь основатель династия" },
+            { title: "Владимир Святой", description: "Креститель Руси", type: "Личность", url: "ancient-rus.html", keywords: "владимир святой крещение руси христианство" },
+            { title: "Петр I", description: "Первый российский император", type: "Личность", url: "russian-empire.html", keywords: "петр первый император реформы петербург" },
+            { title: "Екатерина II", description: "Великая императрица", type: "Личность", url: "russian-empire.html", keywords: "екатерина вторая великая золотой век" },
+            { title: "Ленин", description: "Основатель Советского государства", type: "Личность", url: "soviet-period.html", keywords: "ленин революция большевики ссср" }
+        ];
+
+        // Функция поиска
+        function performSearch(query) {
+            if (query.length < 2) {
+                hideSuggestions();
+                return;
+            }
+
+            const results = searchData.filter(item => 
+                item.title.toLowerCase().includes(query.toLowerCase()) ||
+                item.description.toLowerCase().includes(query.toLowerCase()) ||
+                item.keywords.toLowerCase().includes(query.toLowerCase())
+            );
+
+            showSuggestions(results);
+        }
+
+        function showSuggestions(results) {
+            const suggestionsContainer = document.getElementById('searchSuggestions');
+            
+            if (results.length === 0) {
+                suggestionsContainer.innerHTML = '<div class="search-suggestion">Ничего не найдено</div>';
+            } else {
+                suggestionsContainer.innerHTML = results.map(item => `
+                    <div class="search-suggestion" onclick="navigateTo('${item.url}')">
+                        <div class="search-suggestion-title">${item.title}</div>
+                        <div class="search-suggestion-description">${item.description}</div>
+                        <div class="search-suggestion-type">${item.type}</div>
+                    </div>
+                `).join('');
+            }
+            
+            suggestionsContainer.style.display = 'block';
+        }
+
+        function hideSuggestions() {
+            document.getElementById('searchSuggestions').style.display = 'none';
+        }
+
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+
+        // Инициализация поиска
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const suggestionsContainer = document.getElementById('searchSuggestions');
+
+            searchInput.addEventListener('input', function() {
+                performSearch(this.value);
+            });
+
+            searchInput.addEventListener('focus', function() {
+                if (this.value.length >= 2) {
+                    performSearch(this.value);
+                }
+            });
+
+            document.addEventListener('click', function(event) {
+                if (!event.target.closest('.search-container')) {
+                    hideSuggestions();
+                }
+            });
+
+            searchInput.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    hideSuggestions();
+                }
+            });
+        });
+
+        // Валидация формы - Лабораторная работа №5
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contactForm');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+            const phoneInput = document.getElementById('phone');
+            const messageInput = document.getElementById('message');
+            const agreeInput = document.getElementById('agree');
+
+            // Валидация только email - Лабораторная работа №5
+            function validateEmail() {
+                const email = emailInput.value.trim();
+                const error = document.getElementById('emailError');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (!emailRegex.test(email)) {
+                    emailInput.classList.add('error');
+                    error.classList.add('show');
+                    error.textContent = 'Пожалуйста, введите корректный email адрес';
+                    return false;
+                }
+                
+                emailInput.classList.remove('error');
+                error.classList.remove('show');
+                return true;
+            }
+
+
+            // Обработчики событий для валидации email в реальном времени
+            emailInput.addEventListener('blur', validateEmail);
+            emailInput.addEventListener('input', function() {
+                if (emailInput.classList.contains('error')) {
+                    validateEmail();
+                }
+            });
+
+            // Обработка отправки формы - валидация только email
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const isEmailValid = validateEmail();
+                const isAgreeValid = agreeInput.checked;
+                
+                if (isEmailValid && isAgreeValid) {
+                    // Сохранение в localStorage
+                    const formData = {
+                        name: nameInput ? nameInput.value.trim() : '',
+                        email: emailInput.value.trim(),
+                        phone: phoneInput ? phoneInput.value.trim() : '',
+                        address: document.getElementById('address') ? document.getElementById('address').value : '',
+                        subject: document.getElementById('subject') ? document.getElementById('subject').value : '',
+                        message: messageInput ? messageInput.value.trim() : '',
+                        date: new Date().toISOString()
+                    };
+                    
+                    // Получаем существующие данные или создаем новый массив
+                    let contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
+                    contacts.push(formData);
+                    localStorage.setItem('contacts', JSON.stringify(contacts));
+                    
+                    // Показываем сообщение об успехе
+                    const successMessage = document.getElementById('formSuccess');
+                    successMessage.classList.add('show');
+                    
+                    // Очищаем форму
+                    form.reset();
+                    
+                    // Скрываем сообщение через 5 секунд
+                    setTimeout(() => {
+                        successMessage.classList.remove('show');
+                    }, 5000);
+                } else {
+                    // Прокрутка к ошибке email, если она есть
+                    if (!isEmailValid) {
+                        emailInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    } else if (!isAgreeValid) {
+                        agreeInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                }
+            });
+
+            // Форма подписки
+            const subscribeForm = document.getElementById('subscribeForm');
+            if (subscribeForm) {
+                const subscribeEmail = document.getElementById('subscribeEmail');
+                const subscribeSuccess = document.getElementById('subscribeSuccess');
+                
+                subscribeForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const email = subscribeEmail.value.trim();
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    
+                    if (emailRegex.test(email)) {
+                        let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+                        if (!subscribers.includes(email)) {
+                            subscribers.push(email);
+                            localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                        }
+                        
+                        subscribeSuccess.style.display = 'block';
+                        subscribeEmail.value = '';
+                        
+                        setTimeout(() => {
+                            subscribeSuccess.style.display = 'none';
+                        }, 3000);
+                    } else {
+                        subscribeEmail.style.borderColor = '#dc2626';
+                        subscribeEmail.placeholder = 'Введите корректный email';
+                        setTimeout(() => {
+                            subscribeEmail.style.borderColor = '#34495e';
+                            subscribeEmail.placeholder = 'Ваш email';
+                        }, 2000);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

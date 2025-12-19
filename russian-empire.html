@@ -11,7 +11,7 @@
     <!-- Header -->
     <header class="header">
         <nav class="nav">
-            <div class="nav-brand">
+            <div class="nav-brand" onclick="window.location.href='index.html'" style="cursor: pointer;">
                 <span class="nav-icon">📚</span>
                 <span class="nav-title">История России</span>
             </div>
@@ -23,10 +23,15 @@
                 <li><a href="soviet-period.html" class="nav-link">Советский период</a></li>
                 <li><a href="modern-russia.html" class="nav-link">Современная Россия</a></li>
             </ul>
-            <div class="nav-search">
-                <div class="search-container">
-                    <input type="text" class="search-input" placeholder="🔍 Поиск по истории России..." id="searchInput">
-                    <div class="search-suggestions" id="searchSuggestions"></div>
+            <div style="display: flex; align-items: center; gap: 1rem; padding: 1rem;">
+                <button id="themeToggle" class="theme-toggle" onclick="toggleTheme()" title="Переключить тему">
+                    🌙
+                </button>
+                <div class="nav-search">
+                    <div class="search-container">
+                        <input type="text" class="search-input" placeholder="🔍 Поиск по истории России..." id="searchInput">
+                        <div class="search-suggestions" id="searchSuggestions"></div>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -35,8 +40,15 @@
     <!-- Page Hero -->
     <section class="page-hero russian-empire">
         <div class="container">
-            <h1 class="page-title">Российская империя</h1>
-            <p class="page-subtitle">От Петра I до Николая II (XVIII-начало ХХ века)</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+                <div>
+                    <h1 class="page-title">Российская империя</h1>
+                    <p class="page-subtitle">От Петра I до Николая II (XVIII-начало ХХ века)</p>
+                </div>
+                <button class="favorite-btn" id="favoriteBtn" onclick="toggleFavorite('russian-empire')" title="Добавить в избранное">
+                    ❤️
+                </button>
+            </div>
         </div>
     </section>
 
@@ -89,80 +101,375 @@
                             Ваш браузер не поддерживает воспроизведение видео.
                         </video>
                     </div>
+                    <div class="media-item">
+                        <h3 style="margin-bottom: 1rem;">Аудио материалы</h3>
+                        <audio controls style="width: 100%; margin-top: 1rem;">
+                            <source src="media/audio.mp3" type="audio/mpeg">
+                            <source src="media/audio.ogg" type="audio/ogg">
+                            <source src="media/audio.wav" type="audio/wav">
+                            Ваш браузер не поддерживает воспроизведение аудио.
+                        </audio>
+                        <p class="media-caption">Исторические аудио материалы о Российской империи.</p>
+                    </div>
                 </div>
                 
                 <p>Шашка была стандартным холодным оружием в русской армии, особенно широко использовалась в кавалерии и казачьих частях. Её конструкция была оптимизирована для рубящих ударов, что делало её эффективным оружием в ближнем бою. Многие шашки того периода были изготовлены на Златоустовской оружейной фабрике, которая славилась качеством своего оружия.</p>
             </section>
 
-            <!-- Key Events Timeline -->
+            <!-- Interactive Timeline - Лабораторная работа №6 -->
             <section class="content-section">
                 <h2>Ключевые события</h2>
-                <div class="timeline">
-                    <div class="timeline-item">
-                        <div class="timeline-card">
+                <p style="margin-bottom: var(--spacing-lg); color: var(--color-text);">
+                    Нажмите на события для получения дополнительной информации
+                </p>
+                <div class="timeline-interactive">
+                    <div class="timeline-line"></div>
+                    
+                    <div class="timeline-item-interactive">
+                        <div class="timeline-content-interactive" onclick="showTimelineDetails(0)">
                             <h3 class="timeline-title">Северная война</h3>
-                            <p class="timeline-description">Война России со Швецией за выход к Балтийскому морю, завершившаяся победой России.</p>
+                            <p class="timeline-description">Война России со Швецией за выход к Балтийскому морю</p>
                             <span class="timeline-date">1700-1721 гг.</span>
                         </div>
+                        <div class="timeline-dot"></div>
                     </div>
                     
-                    <div class="timeline-item">
-                        <div class="timeline-card">
+                    <div class="timeline-item-interactive">
+                        <div class="timeline-content-interactive" onclick="showTimelineDetails(1)">
                             <h3 class="timeline-title">Основание Санкт-Петербурга</h3>
-                            <p class="timeline-description">Заложение новой столицы Российской империи на берегах Невы.</p>
+                            <p class="timeline-description">Заложение новой столицы Российской империи</p>
                             <span class="timeline-date">1703 г.</span>
                         </div>
+                        <div class="timeline-dot"></div>
                     </div>
                     
-                    <div class="timeline-item">
-                        <div class="timeline-card">
-                            <h3 class="timeline-title">Провозглашение Российской империи</h3>
-                            <p class="timeline-description">Петр I принял титул императора, Россия стала империей.</p>
+                    <div class="timeline-item-interactive">
+                        <div class="timeline-content-interactive" onclick="showTimelineDetails(2)">
+                            <h3 class="timeline-title">Провозглашение империи</h3>
+                            <p class="timeline-description">Петр I принял титул императора</p>
                             <span class="timeline-date">1721 г.</span>
                         </div>
+                        <div class="timeline-dot"></div>
                     </div>
                     
-                    <div class="timeline-item">
-                        <div class="timeline-card">
+                    <div class="timeline-item-interactive">
+                        <div class="timeline-content-interactive" onclick="showTimelineDetails(3)">
                             <h3 class="timeline-title">Правление Екатерины II</h3>
-                            <p class="timeline-description">"Золотой век" Российской империи, расширение границ, расцвет культуры.</p>
+                            <p class="timeline-description">"Золотой век" Российской империи</p>
                             <span class="timeline-date">1762-1796</span>
                         </div>
+                        <div class="timeline-dot"></div>
                     </div>
                     
-                    <div class="timeline-item">
-                        <div class="timeline-card">
-                            <h3 class="timeline-title">Отечественная война</h3>
-                            <p class="timeline-description">Война с Наполеоном, изгнание французской армии из России.</p>
+                    <div class="timeline-item-interactive">
+                        <div class="timeline-content-interactive" onclick="showTimelineDetails(4)">
+                            <h3 class="timeline-title">Отечественная война 1812</h3>
+                            <p class="timeline-description">Война с Наполеоном, изгнание французской армии</p>
                             <span class="timeline-date">1812 г.</span>
                         </div>
+                        <div class="timeline-dot"></div>
                     </div>
                     
-                    <div class="timeline-item">
-                        <div class="timeline-card">
+                    <div class="timeline-item-interactive">
+                        <div class="timeline-content-interactive" onclick="showTimelineDetails(5)">
                             <h3 class="timeline-title">Отмена крепостного права</h3>
-                            <p class="timeline-description">Великая реформа Александра II, освобождение крестьян от крепостной зависимости.</p>
+                            <p class="timeline-description">Великая реформа Александра II</p>
                             <span class="timeline-date">1861 г.</span>
                         </div>
+                        <div class="timeline-dot"></div>
                     </div>
                     
-                    <div class="timeline-item">
-                        <div class="timeline-card">
+                    <div class="timeline-item-interactive">
+                        <div class="timeline-content-interactive" onclick="showTimelineDetails(6)">
                             <h3 class="timeline-title">Первая русская революция</h3>
-                            <p class="timeline-description">Революционные события, создание Государственной думы.</p>
+                            <p class="timeline-description">Революционные события, создание Государственной думы</p>
                             <span class="timeline-date">1905-1907</span>
                         </div>
+                        <div class="timeline-dot"></div>
                     </div>
                     
-                    <div class="timeline-item">
-                        <div class="timeline-card">
+                    <div class="timeline-item-interactive">
+                        <div class="timeline-content-interactive" onclick="showTimelineDetails(7)">
                             <h3 class="timeline-title">Первая мировая война</h3>
-                            <p class="timeline-description">Участие России в мировой войне, революционные события 1917 года.</p>
+                            <p class="timeline-description">Участие России в мировой войне, революционные события 1917 года</p>
                             <span class="timeline-date">1914-1918</span>
+                        </div>
+                        <div class="timeline-dot"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Rulers Table - Лабораторная работа №2 -->
+            <section class="content-section">
+                <h2>Хронология правителей Российской империи</h2>
+                <p style="margin-bottom: var(--spacing-lg); color: var(--color-text);">
+                    Таблица основных правителей Российской империи с указанием периода правления и ключевых достижений.
+                </p>
+                <!-- Filter and Sort Controls - Лабораторная работа №5 -->
+                <div class="filter-sort-container">
+                    <label for="filterRulers" style="font-weight: 500; color: var(--color-primary);">Фильтр по титулу:</label>
+                    <select id="filterRulers" class="filter-select" onchange="filterRulersTable()">
+                        <option value="all">Все правители</option>
+                        <option value="Император">Только императоры</option>
+                        <option value="Императрица">Только императрицы</option>
+                    </select>
+                    <label for="sortRulers" style="font-weight: 500; color: var(--color-primary); margin-left: 1rem;">Сортировка:</label>
+                    <select id="sortRulers" class="sort-select" onchange="sortRulersTable()">
+                        <option value="default">По умолчанию</option>
+                        <option value="name">По имени (А-Я)</option>
+                        <option value="year-asc">По году начала (возрастание)</option>
+                        <option value="year-desc">По году начала (убывание)</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table class="table" id="rulersTable">
+                        <thead>
+                            <tr>
+                                <th>Правитель</th>
+                                <th>Годы правления</th>
+                                <th>Титул</th>
+                                <th>Основные достижения</th>
+                            </tr>
+                        </thead>
+                        <tbody id="rulersTableBody">
+                            <tr>
+                                <td><strong>Петр I</strong></td>
+                                <td>1682-1725</td>
+                                <td>Император</td>
+                                <td>Реформы, основание Санкт-Петербурга, Северная война, провозглашение империи</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Екатерина I</strong></td>
+                                <td>1725-1727</td>
+                                <td>Императрица</td>
+                                <td>Продолжение политики Петра I, создание Верховного тайного совета</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Петр II</strong></td>
+                                <td>1727-1730</td>
+                                <td>Император</td>
+                                <td>Короткое правление, возвращение столицы в Москву</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Анна Иоанновна</strong></td>
+                                <td>1730-1740</td>
+                                <td>Императрица</td>
+                                <td>Бироновщина, русско-турецкая война 1735-1739</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Елизавета Петровна</strong></td>
+                                <td>1741-1761</td>
+                                <td>Императрица</td>
+                                <td>Семилетняя война, развитие культуры и образования</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Петр III</strong></td>
+                                <td>1761-1762</td>
+                                <td>Император</td>
+                                <td>Манифест о вольности дворянства, мир с Пруссией</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Екатерина II</strong></td>
+                                <td>1762-1796</td>
+                                <td>Императрица</td>
+                                <td>"Золотой век", расширение границ, административная реформа, расцвет культуры</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Павел I</strong></td>
+                                <td>1796-1801</td>
+                                <td>Император</td>
+                                <td>Указ о престолонаследии, ограничение дворянских привилегий</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Александр I</strong></td>
+                                <td>1801-1825</td>
+                                <td>Император</td>
+                                <td>Отечественная война 1812, создание Священного союза, либеральные реформы</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Николай I</strong></td>
+                                <td>1825-1855</td>
+                                <td>Император</td>
+                                <td>Кодификация законов, Крымская война, укрепление самодержавия</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Александр II</strong></td>
+                                <td>1855-1881</td>
+                                <td>Император</td>
+                                <td>Отмена крепостного права, судебная реформа, военная реформа</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Александр III</strong></td>
+                                <td>1881-1894</td>
+                                <td>Император</td>
+                                <td>Контрреформы, укрепление самодержавия, экономический подъем</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Николай II</strong></td>
+                                <td>1894-1917</td>
+                                <td>Император</td>
+                                <td>Русско-японская война, революция 1905-1907, Первая мировая война, отречение</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Statistics Table - Лабораторная работа №2 -->
+            <section class="content-section">
+                <h2>Статистика ключевых событий Российской империи</h2>
+                <p style="margin-bottom: var(--spacing-lg); color: var(--color-text);">
+                    Количественная статистика важнейших событий и достижений периода Российской империи.
+                </p>
+                <!-- Filter and Sort Controls - Лабораторная работа №5 -->
+                <div class="filter-sort-container">
+                    <label for="filterStats" style="font-weight: 500; color: var(--color-primary);">Фильтр:</label>
+                    <select id="filterStats" class="filter-select" onchange="filterStatsTable()">
+                        <option value="all">Все категории</option>
+                        <option value="Войны">Войны</option>
+                        <option value="Реформы">Реформы</option>
+                        <option value="Культура">Культурные достижения</option>
+                    </select>
+                    <label for="sortStats" style="font-weight: 500; color: var(--color-primary); margin-left: 1rem;">Сортировка:</label>
+                    <select id="sortStats" class="sort-select" onchange="sortStatsTable()">
+                        <option value="default">По умолчанию</option>
+                        <option value="count-asc">По количеству (возрастание)</option>
+                        <option value="count-desc">По количеству (убывание)</option>
+                        <option value="name">По названию (А-Я)</option>
+                    </select>
+                </div>
+                <div class="table-container">
+                    <table class="table" id="statsTable">
+                        <thead>
+                            <tr>
+                                <th>Категория события</th>
+                                <th>Количество</th>
+                                <th>Период</th>
+                                <th>Описание</th>
+                            </tr>
+                        </thead>
+                        <tbody id="statsTableBody">
+                            <tr>
+                                <td><strong>Войны</strong></td>
+                                <td>15</td>
+                                <td>1721-1917</td>
+                                <td>Крупные военные конфликты с участием России</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Реформы</strong></td>
+                                <td>12</td>
+                                <td>1721-1917</td>
+                                <td>Масштабные государственные преобразования</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Территориальные приобретения</strong></td>
+                                <td>8</td>
+                                <td>1721-1917</td>
+                                <td>Значительные расширения границ империи</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Основанные города</strong></td>
+                                <td>25+</td>
+                                <td>1703-1917</td>
+                                <td>Новые города, включая Санкт-Петербург</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Университеты</strong></td>
+                                <td>12</td>
+                                <td>1755-1917</td>
+                                <td>Высшие учебные заведения, основанные в империи</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Революции</strong></td>
+                                <td>3</td>
+                                <td>1825-1917</td>
+                                <td>Восстания и революционные движения</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Отмененные законы</strong></td>
+                                <td>5</td>
+                                <td>1861-1917</td>
+                                <td>Крупные правовые изменения (крепостное право и др.)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Династические браки</strong></td>
+                                <td>18</td>
+                                <td>1721-1917</td>
+                                <td>Браки членов императорской семьи с европейскими монархами</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Культурные достижения</strong></td>
+                                <td>50+</td>
+                                <td>1721-1917</td>
+                                <td>Произведения искусства, литературы, музыки мирового значения</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Научные открытия</strong></td>
+                                <td>30+</td>
+                                <td>1721-1917</td>
+                                <td>Важнейшие научные достижения российских ученых</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Gallery with Lightbox - Лабораторная работа №6 -->
+            <section class="content-section">
+                <h2>Галерея исторических личностей</h2>
+                <p style="margin-bottom: var(--spacing-lg); color: var(--color-text);">
+                    Нажмите на изображение для просмотра в полном размере
+                </p>
+                <div class="gallery-grid" id="galleryGrid">
+                    <div class="gallery-item" onclick="openLightbox(0)">
+                        <img src="img/Петр 1.webp" alt="Петр I">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">Петр I - Первый российский император</div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(1)">
+                        <img src="img/Екатерина 2.webp" alt="Екатерина II">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">Екатерина II - Великая императрица</div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(2)">
+                        <img src="img/Алеександр 2.webp" alt="Александр II">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">Александр II - Царь-освободитель</div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(3)">
+                        <img src="img/Николай 2.webp" alt="Николай II">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">Николай II - Последний российский император</div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(4)">
+                        <img src="img/РОманов.webp" alt="Династия Романовых">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">Династия Романовых</div>
+                        </div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox(5)">
+                        <img src="img/Империя.jpg" alt="Российская империя">
+                        <div class="gallery-overlay">
+                            <div class="gallery-caption">Российская империя</div>
                         </div>
                     </div>
                 </div>
             </section>
+
+            <!-- Lightbox Modal -->
+            <div id="lightbox" class="lightbox">
+                <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+                <button class="lightbox-nav lightbox-prev" onclick="changeImage(-1)">&#8249;</button>
+                <button class="lightbox-nav lightbox-next" onclick="changeImage(1)">&#8250;</button>
+                <div class="lightbox-content">
+                    <img id="lightboxImage" class="lightbox-image" src="" alt="">
+                    <div class="lightbox-caption" id="lightboxCaption"></div>
+                </div>
+            </div>
 
             <!-- Historical Figures -->
             <section class="content-section">
@@ -248,9 +555,32 @@
                     <ul class="footer-links">
                         <li><a href="#">О проекте</a></li>
                         <li><a href="#">Источники</a></li>
-                        <li><a href="#">Контакты</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
                         <li><a href="#">Политика конфиденциальности</a></li>
                     </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Подписка на новости</h3>
+                    <p class="footer-description">Получайте уведомления о новых статьях и обновлениях</p>
+                    <form id="subscribeForm" class="footer-subscribe" style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                        <input 
+                            type="email" 
+                            id="subscribeEmail" 
+                            placeholder="Ваш email" 
+                            required
+                            style="flex: 1; padding: 0.5rem; border: 1px solid #34495e; border-radius: 6px; background: #34495e; color: white; font-size: 0.875rem;"
+                        >
+                        <button 
+                            type="submit" 
+                            style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease;"
+                        >
+                            Подписаться
+                        </button>
+                    </form>
+                    <div id="subscribeSuccess" style="display: none; color: #10b981; margin-top: 0.5rem; font-size: 0.875rem;">
+                        ✓ Вы успешно подписались!
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -514,6 +844,395 @@
                     hideSuggestions();
                 }
             });
+
+            // localStorage - Избранное и история просмотров - Лабораторная работа №5
+            // Сохранение истории просмотров
+            function saveViewHistory(pageId, pageTitle) {
+                let history = JSON.parse(localStorage.getItem('viewHistory') || '[]');
+                const view = {
+                    id: pageId,
+                    title: pageTitle,
+                    url: window.location.href,
+                    date: new Date().toISOString()
+                };
+                
+                // Удаляем дубликаты
+                history = history.filter(item => item.id !== pageId);
+                // Добавляем в начало
+                history.unshift(view);
+                // Ограничиваем до 20 записей
+                history = history.slice(0, 20);
+                
+                localStorage.setItem('viewHistory', JSON.stringify(history));
+            }
+
+            // Загрузка состояния избранного
+            function loadFavoriteState(pageId) {
+                let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+                const favoriteBtn = document.getElementById('favoriteBtn');
+                
+                if (favorites.includes(pageId)) {
+                    favoriteBtn.classList.add('active');
+                    favoriteBtn.innerHTML = '❤️';
+                    favoriteBtn.title = 'Удалить из избранного';
+                } else {
+                    favoriteBtn.classList.remove('active');
+                    favoriteBtn.innerHTML = '🤍';
+                    favoriteBtn.title = 'Добавить в избранное';
+                }
+            }
+
+            // Переключение избранного
+            window.toggleFavorite = function(pageId) {
+                let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+                const favoriteBtn = document.getElementById('favoriteBtn');
+                
+                if (favorites.includes(pageId)) {
+                    favorites = favorites.filter(id => id !== pageId);
+                    favoriteBtn.classList.remove('active');
+                    favoriteBtn.innerHTML = '🤍';
+                    favoriteBtn.title = 'Добавить в избранное';
+                } else {
+                    favorites.push(pageId);
+                    favoriteBtn.classList.add('active');
+                    favoriteBtn.innerHTML = '❤️';
+                    favoriteBtn.title = 'Удалить из избранного';
+                }
+                
+                localStorage.setItem('favorites', JSON.stringify(favorites));
+            };
+
+            // Инициализация при загрузке страницы
+            saveViewHistory('russian-empire', 'Российская империя');
+            loadFavoriteState('russian-empire');
+
+            // Lightbox Gallery - Лабораторная работа №6
+            const galleryImages = [
+                { src: 'img/Петр 1.webp', caption: 'Петр I - Первый российский император' },
+                { src: 'img/Екатерина 2.webp', caption: 'Екатерина II - Великая императрица' },
+                { src: 'img/Алеександр 2.webp', caption: 'Александр II - Царь-освободитель' },
+                { src: 'img/Николай 2.webp', caption: 'Николай II - Последний российский император' },
+                { src: 'img/РОманов.webp', caption: 'Династия Романовых' },
+                { src: 'img/Империя.jpg', caption: 'Российская империя' }
+            ];
+
+            let currentImageIndex = 0;
+
+            window.openLightbox = function(index) {
+                currentImageIndex = index;
+                const lightbox = document.getElementById('lightbox');
+                const lightboxImage = document.getElementById('lightboxImage');
+                const lightboxCaption = document.getElementById('lightboxCaption');
+                
+                lightboxImage.src = galleryImages[index].src;
+                lightboxCaption.textContent = galleryImages[index].caption;
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            };
+
+            window.closeLightbox = function() {
+                const lightbox = document.getElementById('lightbox');
+                lightbox.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            };
+
+            window.changeImage = function(direction) {
+                currentImageIndex += direction;
+                
+                if (currentImageIndex < 0) {
+                    currentImageIndex = galleryImages.length - 1;
+                } else if (currentImageIndex >= galleryImages.length) {
+                    currentImageIndex = 0;
+                }
+                
+                const lightboxImage = document.getElementById('lightboxImage');
+                const lightboxCaption = document.getElementById('lightboxCaption');
+                lightboxImage.src = galleryImages[currentImageIndex].src;
+                lightboxCaption.textContent = galleryImages[currentImageIndex].caption;
+            };
+
+            // Закрытие lightbox по клику вне изображения
+            document.getElementById('lightbox').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeLightbox();
+                }
+            });
+
+            // Навигация клавиатурой
+            document.addEventListener('keydown', function(e) {
+                const lightbox = document.getElementById('lightbox');
+                if (lightbox.classList.contains('active')) {
+                    if (e.key === 'Escape') {
+                        closeLightbox();
+                    } else if (e.key === 'ArrowLeft') {
+                        changeImage(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        changeImage(1);
+                    }
+                }
+            });
+
+            // Добавляем lightbox для всех изображений на странице
+            document.addEventListener('DOMContentLoaded', function() {
+                const allImages = document.querySelectorAll('.media-image, .figure-image img, .period-image img');
+                allImages.forEach((img, index) => {
+                    if (!img.closest('.gallery-item')) {
+                        img.style.cursor = 'pointer';
+                        img.addEventListener('click', function() {
+                            // Создаем временную галерею для этого изображения
+                            const tempGallery = [{
+                                src: img.src,
+                                caption: img.alt || 'Историческое изображение'
+                            }];
+                            galleryImages.push(...tempGallery);
+                            openLightbox(galleryImages.length - 1);
+                        });
+                    }
+                });
+            });
+
+            // Фильтрация и сортировка таблиц - Лабораторная работа №5
+            // Фильтрация таблицы правителей
+            window.filterRulersTable = function() {
+                const filterValue = document.getElementById('filterRulers').value;
+                const table = document.getElementById('rulersTableBody');
+                const rows = table.getElementsByTagName('tr');
+                
+                for (let i = 0; i < rows.length; i++) {
+                    const row = rows[i];
+                    const titleCell = row.cells[2]; // Колонка "Титул"
+                    
+                    if (filterValue === 'all' || titleCell.textContent.includes(filterValue)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            };
+
+            // Сортировка таблицы правителей
+            window.sortRulersTable = function() {
+                const sortValue = document.getElementById('sortRulers').value;
+                const table = document.getElementById('rulersTableBody');
+                const rows = Array.from(table.getElementsByTagName('tr'));
+                
+                rows.sort((a, b) => {
+                    if (sortValue === 'name') {
+                        const nameA = a.cells[0].textContent.trim();
+                        const nameB = b.cells[0].textContent.trim();
+                        return nameA.localeCompare(nameB, 'ru');
+                    } else if (sortValue === 'year-asc') {
+                        const yearA = parseInt(a.cells[1].textContent.split('-')[0]);
+                        const yearB = parseInt(b.cells[1].textContent.split('-')[0]);
+                        return yearA - yearB;
+                    } else if (sortValue === 'year-desc') {
+                        const yearA = parseInt(a.cells[1].textContent.split('-')[0]);
+                        const yearB = parseInt(b.cells[1].textContent.split('-')[0]);
+                        return yearB - yearA;
+                    }
+                    return 0;
+                });
+                
+                // Очищаем таблицу и добавляем отсортированные строки
+                table.innerHTML = '';
+                rows.forEach(row => table.appendChild(row));
+            };
+
+            // Фильтрация таблицы статистики
+            window.filterStatsTable = function() {
+                const filterValue = document.getElementById('filterStats').value;
+                const table = document.getElementById('statsTableBody');
+                const rows = table.getElementsByTagName('tr');
+                
+                for (let i = 0; i < rows.length; i++) {
+                    const row = rows[i];
+                    const categoryCell = row.cells[0].textContent;
+                    
+                    if (filterValue === 'all' || categoryCell.includes(filterValue)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                }
+            };
+
+            // Сортировка таблицы статистики
+            window.sortStatsTable = function() {
+                const sortValue = document.getElementById('sortStats').value;
+                const table = document.getElementById('statsTableBody');
+                const rows = Array.from(table.getElementsByTagName('tr'));
+                
+                rows.sort((a, b) => {
+                    if (sortValue === 'count-asc') {
+                        const countA = parseInt(a.cells[1].textContent.replace(/\D/g, ''));
+                        const countB = parseInt(b.cells[1].textContent.replace(/\D/g, ''));
+                        return countA - countB;
+                    } else if (sortValue === 'count-desc') {
+                        const countA = parseInt(a.cells[1].textContent.replace(/\D/g, ''));
+                        const countB = parseInt(b.cells[1].textContent.replace(/\D/g, ''));
+                        return countB - countA;
+                    } else if (sortValue === 'name') {
+                        const nameA = a.cells[0].textContent.trim();
+                        const nameB = b.cells[0].textContent.trim();
+                        return nameA.localeCompare(nameB, 'ru');
+                    }
+                    return 0;
+                });
+                
+                // Очищаем таблицу и добавляем отсортированные строки
+                table.innerHTML = '';
+                rows.forEach(row => table.appendChild(row));
+            };
+
+            // Интерактивная временная шкала - Лабораторная работа №6
+            const timelineDetails = [
+                {
+                    title: 'Северная война',
+                    date: '1700-1721 гг.',
+                    description: 'Война России со Швецией за выход к Балтийскому морю, завершившаяся победой России. Ключевые сражения: битва при Нарве (1700), Полтавская битва (1709), Гангутское сражение (1714).',
+                    impact: 'Россия получила выход к Балтийскому морю, стала морской державой, получила территории Ингрии, Эстляндии, Лифляндии.'
+                },
+                {
+                    title: 'Основание Санкт-Петербурга',
+                    date: '1703 г.',
+                    description: 'Заложение новой столицы Российской империи на берегах Невы. Город был построен по приказу Петра I как "окно в Европу".',
+                    impact: 'Санкт-Петербург стал новой столицей России, символом европеизации и модернизации страны.'
+                },
+                {
+                    title: 'Провозглашение Российской империи',
+                    date: '1721 г.',
+                    description: 'Петр I принял титул императора, Россия была провозглашена империей после победы в Северной войне.',
+                    impact: 'Россия официально стала империей, что подняло её международный статус и признание европейскими державами.'
+                },
+                {
+                    title: 'Правление Екатерины II',
+                    date: '1762-1796',
+                    description: '"Золотой век" Российской империи. Екатерина II провела административную реформу, расширила границы империи, способствовала развитию культуры.',
+                    impact: 'Значительное расширение территории, расцвет культуры и образования, укрепление позиций России в Европе.'
+                },
+                {
+                    title: 'Отечественная война 1812',
+                    date: '1812 г.',
+                    description: 'Война с Наполеоном, изгнание французской армии из России. Ключевые сражения: Бородинская битва, сражение под Малоярославцем.',
+                    impact: 'Разгром наполеоновской армии, рост национального самосознания, усиление влияния России в Европе.'
+                },
+                {
+                    title: 'Отмена крепостного права',
+                    date: '1861 г.',
+                    description: 'Великая реформа Александра II, освобождение крестьян от крепостной зависимости. Манифест об отмене крепостного права был подписан 19 февраля 1861 года.',
+                    impact: 'Освобождение миллионов крестьян, начало капиталистического развития России, социальные и экономические изменения.'
+                },
+                {
+                    title: 'Первая русская революция',
+                    date: '1905-1907',
+                    description: 'Революционные события, вызванные поражением в русско-японской войне и социально-экономическими проблемами. Ключевые события: Кровавое воскресенье, всеобщая стачка, создание Государственной думы.',
+                    impact: 'Создание Государственной думы, начало конституционной монархии, ограничение самодержавия, реформы Столыпина.'
+                },
+                {
+                    title: 'Первая мировая война',
+                    date: '1914-1918',
+                    description: 'Участие России в мировой войне на стороне Антанты. Ключевые сражения: Восточно-Прусская операция, Галицийская битва, Брусиловский прорыв. Революционные события 1917 года привели к выходу России из войны.',
+                    impact: 'Крах Российской империи, Февральская и Октябрьская революции 1917 года, начало Гражданской войны, формирование нового государства.'
+                }
+            ];
+
+            window.showTimelineDetails = function(index) {
+                const detail = timelineDetails[index];
+                const modal = document.createElement('div');
+                modal.className = 'modal russian-empire';
+                modal.innerHTML = `
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>${detail.title}</h2>
+                            <button class="modal-close" onclick="this.closest('.modal').remove(); document.body.style.overflow='auto';">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p><strong>Дата:</strong> ${detail.date}</p>
+                            <h3>Описание</h3>
+                            <p>${detail.description}</p>
+                            <h3>Значение</h3>
+                            <p>${detail.impact}</p>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) {
+                        modal.remove();
+                        document.body.style.overflow = 'auto';
+                    }
+                });
+            };
+
+            // Темная тема - Дополнительно
+            function loadTheme() {
+                const savedTheme = localStorage.getItem('theme') || 'light';
+                if (savedTheme === 'dark') {
+                    document.body.classList.add('dark-theme');
+                    document.getElementById('themeToggle').textContent = '☀️';
+                } else {
+                    document.body.classList.remove('dark-theme');
+                    document.getElementById('themeToggle').textContent = '🌙';
+                }
+            }
+
+            window.toggleTheme = function() {
+                const body = document.body;
+                const toggle = document.getElementById('themeToggle');
+                
+                if (body.classList.contains('dark-theme')) {
+                    body.classList.remove('dark-theme');
+                    toggle.textContent = '🌙';
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    body.classList.add('dark-theme');
+                    toggle.textContent = '☀️';
+                    localStorage.setItem('theme', 'dark');
+                }
+            };
+
+            // Загрузка темы при загрузке страницы
+            loadTheme();
+
+            // Форма подписки
+            const subscribeForm = document.getElementById('subscribeForm');
+            if (subscribeForm) {
+                const subscribeEmail = document.getElementById('subscribeEmail');
+                const subscribeSuccess = document.getElementById('subscribeSuccess');
+                
+                subscribeForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const email = subscribeEmail.value.trim();
+                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    
+                    if (emailRegex.test(email)) {
+                        // Сохранение в localStorage
+                        let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+                        if (!subscribers.includes(email)) {
+                            subscribers.push(email);
+                            localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                        }
+                        
+                        subscribeSuccess.style.display = 'block';
+                        subscribeEmail.value = '';
+                        
+                        setTimeout(() => {
+                            subscribeSuccess.style.display = 'none';
+                        }, 3000);
+                    } else {
+                        subscribeEmail.style.borderColor = '#dc2626';
+                        subscribeEmail.placeholder = 'Введите корректный email';
+                        setTimeout(() => {
+                            subscribeEmail.style.borderColor = '#34495e';
+                            subscribeEmail.placeholder = 'Ваш email';
+                        }, 2000);
+                    }
+                });
+            }
         });
     </script>
 </body>

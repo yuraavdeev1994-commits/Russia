@@ -159,9 +159,32 @@
                     <ul class="footer-links">
                         <li><a href="#">О проекте</a></li>
                         <li><a href="#">Источники</a></li>
-                        <li><a href="#">Контакты</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
                         <li><a href="#">Политика конфиденциальности</a></li>
                     </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Подписка на новости</h3>
+                    <p class="footer-description">Получайте уведомления о новых статьях и обновлениях</p>
+                    <form id="subscribeForm" class="footer-subscribe" style="display: flex; gap: 0.5rem; margin-top: 1rem;">
+                        <input 
+                            type="email" 
+                            id="subscribeEmail" 
+                            placeholder="Ваш email" 
+                            required
+                            style="flex: 1; padding: 0.5rem; border: 1px solid #34495e; border-radius: 6px; background: #34495e; color: white; font-size: 0.875rem;"
+                        >
+                        <button 
+                            type="submit" 
+                            style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: 500; transition: background-color 0.3s ease;"
+                        >
+                            Подписаться
+                        </button>
+                    </form>
+                    <div id="subscribeSuccess" style="display: none; color: #10b981; margin-top: 0.5rem; font-size: 0.875rem;">
+                        ✓ Вы успешно подписались!
+                    </div>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -280,6 +303,41 @@
             searchInput.addEventListener('keydown', function(event) {
                 if (event.key === 'Escape') {
                     hideSuggestions();
+                }
+            });
+
+            // Форма подписки
+            const subscribeForm = document.getElementById('subscribeForm');
+            const subscribeEmail = document.getElementById('subscribeEmail');
+            const subscribeSuccess = document.getElementById('subscribeSuccess');
+            
+            subscribeForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const email = subscribeEmail.value.trim();
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                
+                if (emailRegex.test(email)) {
+                    // Сохранение в localStorage
+                    let subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+                    if (!subscribers.includes(email)) {
+                        subscribers.push(email);
+                        localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                    }
+                    
+                    subscribeSuccess.style.display = 'block';
+                    subscribeEmail.value = '';
+                    
+                    setTimeout(() => {
+                        subscribeSuccess.style.display = 'none';
+                    }, 3000);
+                } else {
+                    subscribeEmail.style.borderColor = '#dc2626';
+                    subscribeEmail.placeholder = 'Введите корректный email';
+                    setTimeout(() => {
+                        subscribeEmail.style.borderColor = '#34495e';
+                        subscribeEmail.placeholder = 'Ваш email';
+                    }, 2000);
                 }
             });
         });
