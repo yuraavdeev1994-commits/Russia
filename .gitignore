@@ -1,0 +1,15 @@
+# Игнорировать большие медиа файлы
+media/*.mp3
+media/*.mp4
+*.mp3
+*.mp4
+
+# Игнорировать конкретный большой файл
+media/imperator-nikolay-ii-portret-na-fone-epohi.mp3
+
+# Временные файлы
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
