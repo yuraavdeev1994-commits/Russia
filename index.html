@@ -197,6 +197,9 @@
                     <button id="currentTimeBtn" onclick="showCurrentTime()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.875rem;">
                         Узнать текущее время
                     </button>
+                    <button id="distanceBtn" onclick="getDistanceToNGTU()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.875rem;">
+                        Расстояние до НГТУ
+                    </button>
                     <div id="geolocationInfo" style="color: #ecf0f1; font-size: 0.875rem;"></div>
                 </div>
             </div>
@@ -372,15 +375,21 @@
             };
 
             // Задание 4 - Лабораторная работа №6: Получить координаты и расстояние до НГТУ
-            function getDistanceToNGTU() {
+            window.getDistanceToNGTU = function() {
+                const geolocationInfo = document.getElementById('geolocationInfo');
+                if (!geolocationInfo) return;
+                
+                // Показываем индикатор загрузки
+                geolocationInfo.innerHTML = 'Определение расстояния...';
+                
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position) {
                         const userLat = position.coords.latitude;
                         const userLon = position.coords.longitude;
                         
-                        // Координаты 1 корпуса НГТУ (Новосибирск)
-                        const ngtuLat = 55.0286;
-                        const ngtuLon = 82.9064;
+                        // Точные координаты 1 корпуса НГТУ
+                        const ngtuLat = 56.326299;
+                        const ngtuLon = 44.024735;
                         
                         // Формула гаверсинуса для расчета расстояния
                         const R = 6371; // Радиус Земли в километрах
@@ -392,15 +401,16 @@
                         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
                         const distance = R * c;
                         
-                        const geolocationInfo = document.getElementById('geolocationInfo');
                         geolocationInfo.innerHTML = `Расстояние до 1 корпуса НГТУ: ${distance.toFixed(2)} км`;
                     }, function(error) {
-                        const geolocationInfo = document.getElementById('geolocationInfo');
                         geolocationInfo.innerHTML = 'Не удалось получить местоположение';
                         console.error('Ошибка геолокации:', error);
+                    }, {
+                        enableHighAccuracy: true,
+                        timeout: 10000,
+                        maximumAge: 0 // Не использовать кэш, всегда запрашивать свежие координаты
                     });
                 } else {
-                    const geolocationInfo = document.getElementById('geolocationInfo');
                     geolocationInfo.innerHTML = 'Геолокация не поддерживается вашим браузером';
                 }
             }
