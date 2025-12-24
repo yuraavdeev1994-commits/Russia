@@ -401,9 +401,13 @@
                         const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
                         const distance = R * c;
                         
-                        geolocationInfo.innerHTML = `Расстояние до 1 корпуса НГТУ: ${distance.toFixed(2)} км`;
+                        const distanceText = `Расстояние до 1 корпуса НГТУ: ${distance.toFixed(2)} км`;
+                        geolocationInfo.innerHTML = distanceText;
+                        alert(distanceText);
                     }, function(error) {
-                        geolocationInfo.innerHTML = 'Не удалось получить местоположение';
+                        const errorText = 'Не удалось получить местоположение';
+                        geolocationInfo.innerHTML = errorText;
+                        alert(errorText);
                         console.error('Ошибка геолокации:', error);
                     }, {
                         enableHighAccuracy: true,
@@ -411,7 +415,9 @@
                         maximumAge: 0 // Не использовать кэш, всегда запрашивать свежие координаты
                     });
                 } else {
-                    geolocationInfo.innerHTML = 'Геолокация не поддерживается вашим браузером';
+                    const errorText = 'Геолокация не поддерживается вашим браузером';
+                    geolocationInfo.innerHTML = errorText;
+                    alert(errorText);
                 }
             }
             
