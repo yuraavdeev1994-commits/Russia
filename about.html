@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас - История России</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .about-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .mission-section, .team-section, .contact-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+        .mission-section h2, .team-section h2, .contact-section h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 0.5rem;
+        }
+        .mission-section p, .team-section p {
+            color: #6c757d;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .team-member {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            border-left: 4px solid #667eea;
+        }
+        .team-member h3 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        .team-member p {
+            color: #6c757d;
+            margin: 0;
+        }
+        .contact-form-simple {
+            margin-top: 1.5rem;
+        }
+        .form-group-simple {
+            margin-bottom: 1rem;
+        }
+        .form-label-simple {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+        .form-input-simple, .form-textarea-simple {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #e9ecef;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        .form-input-simple:focus, .form-textarea-simple:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        .form-textarea-simple {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .form-button-simple {
+            background: #667eea;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .form-button-simple:hover {
+            background: #5568d3;
+        }
+        .form-success-simple {
+            display: none;
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand" onclick="window.location.href='index.html'" style="cursor: pointer;">
+                <span class="nav-icon">📚</span>
+                <span class="nav-title">История России</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Главная</a></li>
+                <li><a href="ancient-rus.html" class="nav-link">Древняя Русь</a></li>
+                <li><a href="moscow-state.html" class="nav-link">Московское государство</a></li>
+                <li><a href="russian-empire.html" class="nav-link">Российская империя</a></li>
+                <li><a href="soviet-period.html" class="nav-link">Советский период</a></li>
+                <li><a href="modern-russia.html" class="nav-link">Современная Россия</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <h1 class="page-title">О нас</h1>
+            <p class="page-subtitle">Узнайте больше о нашем проекте и команде</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main">
+        <div class="about-content">
+            <!-- Миссия проекта -->
+            <div class="mission-section">
+                <h2>Миссия проекта</h2>
+                <p>
+                    Проект "История России" создан с целью предоставления доступной и достоверной информации 
+                    о богатой и многогранной истории нашей страны. Мы стремимся сделать изучение истории 
+                    увлекательным и понятным для всех, независимо от возраста и уровня подготовки.
+                </p>
+                <p>
+                    Наш сайт охватывает все ключевые периоды российской истории: от основания Древней Руси 
+                    до современной России. Мы рассказываем о важных событиях, выдающихся личностях, 
+                    культурных достижениях и социальных преобразованиях, которые сформировали Россию 
+                    такой, какой мы знаем её сегодня.
+                </p>
+                <p>
+                    Мы верим, что знание истории помогает лучше понимать настоящее и строить будущее. 
+                    Наша цель - способствовать сохранению исторической памяти и развитию интереса 
+                    к изучению прошлого нашей великой страны.
+                </p>
+            </div>
+
+            <!-- Создатели и редакторы -->
+            <div class="team-section">
+                <h2>Создатели и редакторы</h2>
+                <div class="team-member">
+                    <h3>Команда проекта</h3>
+                    <p>
+                        Над проектом работает команда энтузиастов, включающая историков, веб-разработчиков 
+                        и редакторов контента. Мы объединили наши знания и навыки, чтобы создать 
+                        информативный и удобный ресурс для изучения истории России.
+                    </p>
+                </div>
+                <div class="team-member">
+                    <h3>Исторические консультанты</h3>
+                    <p>
+                        Наш контент проверяется историками и специалистами по различным периодам 
+                        российской истории. Мы стремимся к максимальной достоверности представленной 
+                        информации и регулярно обновляем материалы на основе новых исследований.
+                    </p>
+                </div>
+                <div class="team-member">
+                    <h3>Редакторы</h3>
+                    <p>
+                        Команда редакторов работает над тем, чтобы информация была изложена понятным 
+                        языком, структурирована и доступна для широкой аудитории. Мы уделяем особое 
+                        внимание качеству текстов и визуальному оформлению материалов.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Контактная форма -->
+            <div class="contact-section">
+                <h2>Свяжитесь с нами</h2>
+                <p>
+                    У вас есть вопросы, предложения или вы хотите внести свой вклад в развитие проекта? 
+                    Мы будем рады услышать от вас! Заполните форму ниже, и мы обязательно свяжемся с вами.
+                </p>
+                <form id="aboutContactForm" class="contact-form-simple">
+                    <div class="form-group-simple">
+                        <label for="aboutName" class="form-label-simple">Ваше имя *</label>
+                        <input 
+                            type="text" 
+                            id="aboutName" 
+                            name="name" 
+                            class="form-input-simple" 
+                            placeholder="Введите ваше имя"
+                            required
+                        >
+                    </div>
+                    <div class="form-group-simple">
+                        <label for="aboutEmail" class="form-label-simple">Email *</label>
+                        <input 
+                            type="email" 
+                            id="aboutEmail" 
+                            name="email" 
+                            class="form-input-simple" 
+                            placeholder="example@mail.com"
+                            required
+                        >
+                    </div>
+                    <div class="form-group-simple">
+                        <label for="aboutSubject" class="form-label-simple">Тема сообщения</label>
+                        <input 
+                            type="text" 
+                            id="aboutSubject" 
+                            name="subject" 
+                            class="form-input-simple" 
+                            placeholder="О чем вы хотите написать?"
+                        >
+                    </div>
+                    <div class="form-group-simple">
+                        <label for="aboutMessage" class="form-label-simple">Сообщение *</label>
+                        <textarea 
+                            id="aboutMessage" 
+                            name="message" 
+                            class="form-textarea-simple" 
+                            placeholder="Введите ваше сообщение..."
+                            required
+                        ></textarea>
+                    </div>
+                    <button type="submit" class="form-button-simple">Отправить сообщение</button>
+                    <div class="form-success-simple" id="aboutFormSuccess">
+                        ✓ Спасибо за ваше сообщение! Мы свяжемся с вами в ближайшее время.
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 class="footer-title">История России</h3>
+                    <p class="footer-description">Исследуйте богатую и многогранную историю России от древних времен до современности.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Разделы</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Главная</a></li>
+                        <li><a href="ancient-rus.html">Древняя Русь</a></li>
+                        <li><a href="moscow-state.html">Московское государство</a></li>
+                        <li><a href="russian-empire.html">Российская империя</a></li>
+                        <li><a href="soviet-period.html">Советский период</a></li>
+                        <li><a href="modern-russia.html">Современная Россия</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3 class="footer-title">Информация</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">О нас</a></li>
+                        <li><a href="#">Источники</a></li>
+                        <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="articles.html">Статьи</a></li>
+                        <li><a href="support.html">Поддержать</a></li>
+                        <li><a href="lab5.html">Лабораторная работа №5</a></li>
+                        <li><a href="#">Политика конфиденциальности</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 История России. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Обработчик формы на странице "О нас"
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('aboutContactForm');
+            const successMessage = document.getElementById('aboutFormSuccess');
+            
+            if (form) {
+                form.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    const formData = {
+                        name: document.getElementById('aboutName').value.trim(),
+                        email: document.getElementById('aboutEmail').value.trim(),
+                        subject: document.getElementById('aboutSubject').value.trim(),
+                        message: document.getElementById('aboutMessage').value.trim(),
+                        date: new Date().toISOString()
+                    };
+                    
+                    // Сохранение в localStorage
+                    let messages = JSON.parse(localStorage.getItem('aboutMessages') || '[]');
+                    messages.push(formData);
+                    localStorage.setItem('aboutMessages', JSON.stringify(messages));
+                    
+                    // Показываем сообщение об успехе
+                    successMessage.style.display = 'block';
+                    form.reset();
+                    
+                    // Скрываем сообщение через 5 секунд
+                    setTimeout(() => {
+                        successMessage.style.display = 'none';
+                    }, 5000);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
