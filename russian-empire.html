@@ -96,18 +96,29 @@
                     </div>
                     <div class="media-item">
                         <h3 style="margin-bottom: 1rem;">Демонстрация оружия</h3>
-                        <video controls class="media-video">
+                        <video id="historyVideo" class="media-video">
                             <source src="media/0001-0250.mp4" type="video/mp4">
                             Ваш браузер не поддерживает воспроизведение видео.
                         </video>
+                        <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <button onclick="playVideo()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer;">▶ Запустить</button>
+                            <button onclick="pauseVideo()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer;">⏸ Пауза</button>
+                            <button onclick="forwardVideo()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer;">⏩ +15 сек</button>
+                            <button onclick="backwardVideo()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer;">⏪ -15 сек</button>
+                        </div>
                     </div>
                     <div class="media-item">
                         <h3 style="margin-bottom: 1rem;">Аудио материалы</h3>
-                        <audio controls style="width: 100%; margin-top: 1rem;">
+                        <audio id="historyAudio" style="width: 100%; margin-top: 1rem;">
                             <source src="media/audio.mp3" type="audio/mpeg">
-
                             Ваш браузер не поддерживает воспроизведение аудио.
                         </audio>
+                        <div style="margin-top: 1rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
+                            <button onclick="playAudio()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer;">▶ Запустить</button>
+                            <button onclick="pauseAudio()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer;">⏸ Пауза</button>
+                            <button onclick="forwardAudio()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer;">⏩ +15 сек</button>
+                            <button onclick="backwardAudio()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer;">⏪ -15 сек</button>
+                        </div>
                         <p class="media-caption">Исторические аудио материалы о Российской империи.</p>
                     </div>
                 </div>
@@ -555,6 +566,7 @@
                         <li><a href="#">О проекте</a></li>
                         <li><a href="#">Источники</a></li>
                         <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="lab5.html">Лабораторная работа №5</a></li>
                         <li><a href="#">Политика конфиденциальности</a></li>
                     </ul>
                 </div>
@@ -1233,6 +1245,62 @@
                 });
             }
         });
+        // Задание 5 - Лабораторная работа №6: Video API и Audio API
+        function playVideo() {
+            const video = document.getElementById('historyVideo');
+            if (video) {
+                video.play();
+            }
+        }
+
+        function pauseVideo() {
+            const video = document.getElementById('historyVideo');
+            if (video) {
+                video.pause();
+            }
+        }
+
+        function forwardVideo() {
+            const video = document.getElementById('historyVideo');
+            if (video) {
+                video.currentTime += 15;
+            }
+        }
+
+        function backwardVideo() {
+            const video = document.getElementById('historyVideo');
+            if (video) {
+                video.currentTime -= 15;
+            }
+        }
+
+        function playAudio() {
+            const audio = document.getElementById('historyAudio');
+            if (audio) {
+                audio.play();
+            }
+        }
+
+        function pauseAudio() {
+            const audio = document.getElementById('historyAudio');
+            if (audio) {
+                audio.pause();
+            }
+        }
+
+        function forwardAudio() {
+            const audio = document.getElementById('historyAudio');
+            if (audio) {
+                audio.currentTime += 15;
+            }
+        }
+
+        function backwardAudio() {
+            const audio = document.getElementById('historyAudio');
+            if (audio) {
+                audio.currentTime -= 15;
+            }
+        }
     </script>
 </body>
 </html>

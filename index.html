@@ -160,6 +160,8 @@
                         <li><a href="#">О проекте</a></li>
                         <li><a href="#">Источники</a></li>
                         <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="articles.html">Статьи</a></li>
+                        <li><a href="lab5.html">Лабораторная работа №5</a></li>
                         <li><a href="#">Политика конфиденциальности</a></li>
                     </ul>
                 </div>
@@ -189,6 +191,12 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 История России. Все права защищены.</p>
+                <div style="margin-top: 1rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                    <button id="currentTimeBtn" onclick="showCurrentTime()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.875rem;">
+                        Узнать текущее время
+                    </button>
+                    <div id="geolocationInfo" style="color: #ecf0f1; font-size: 0.875rem;"></div>
+                </div>
             </div>
         </div>
     </footer>
@@ -306,6 +314,12 @@
                 }
             });
 
+            // Задание 1 - Лабораторная работа №6: Получить содержимое заголовка h1 и вывести в консоль
+            const h1Title = document.querySelector('h1.hero-title');
+            if (h1Title) {
+                console.log('Содержимое заголовка h1:', h1Title.textContent);
+            }
+
             // Форма подписки
             const subscribeForm = document.getElementById('subscribeForm');
             const subscribeEmail = document.getElementById('subscribeEmail');
@@ -340,6 +354,57 @@
                     }, 2000);
                 }
             });
+
+            // Задание 2 - Лабораторная работа №6: Кнопка текущего времени
+            window.showCurrentTime = function() {
+                const now = new Date();
+                const dateTime = now.toLocaleString('ru-RU', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit'
+                });
+                alert('Текущие дата и время:\n' + dateTime);
+            };
+
+            // Задание 4 - Лабораторная работа №6: Получить координаты и расстояние до НГТУ
+            function getDistanceToNGTU() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function(position) {
+                        const userLat = position.coords.latitude;
+                        const userLon = position.coords.longitude;
+                        
+                        // Координаты 1 корпуса НГТУ (Новосибирск)
+                        const ngtuLat = 55.0286;
+                        const ngtuLon = 82.9064;
+                        
+                        // Формула гаверсинуса для расчета расстояния
+                        const R = 6371; // Радиус Земли в километрах
+                        const dLat = (ngtuLat - userLat) * Math.PI / 180;
+                        const dLon = (ngtuLon - userLon) * Math.PI / 180;
+                        const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                                Math.cos(userLat * Math.PI / 180) * Math.cos(ngtuLat * Math.PI / 180) *
+                                Math.sin(dLon/2) * Math.sin(dLon/2);
+                        const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                        const distance = R * c;
+                        
+                        const geolocationInfo = document.getElementById('geolocationInfo');
+                        geolocationInfo.innerHTML = `Расстояние до 1 корпуса НГТУ: ${distance.toFixed(2)} км`;
+                    }, function(error) {
+                        const geolocationInfo = document.getElementById('geolocationInfo');
+                        geolocationInfo.innerHTML = 'Не удалось получить местоположение';
+                        console.error('Ошибка геолокации:', error);
+                    });
+                } else {
+                    const geolocationInfo = document.getElementById('geolocationInfo');
+                    geolocationInfo.innerHTML = 'Геолокация не поддерживается вашим браузером';
+                }
+            }
+            
+            // Автоматически получаем расстояние при загрузке страницы
+            getDistanceToNGTU();
         });
     </script>
 </body>

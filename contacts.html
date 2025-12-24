@@ -169,7 +169,7 @@
 
                     <button type="submit" class="form-button">Отправить сообщение</button>
                     
-                    <div class="form-success" id="formSuccess">
+                    <div class="form-success" id="formSuccess" style="display: none; background: #e8f5e9; color: #2e7d32; padding: 1rem; border-radius: 6px; margin-top: 1rem; font-weight: 500;">
                         ✓ Сообщение успешно отправлено! Мы свяжемся с вами в ближайшее время.
                     </div>
                 </form>
@@ -210,6 +210,7 @@
                         <li><a href="#">О проекте</a></li>
                         <li><a href="#">Источники</a></li>
                         <li><a href="contacts.html">Контакты</a></li>
+                        <li><a href="lab5.html">Лабораторная работа №5</a></li>
                         <li><a href="#">Политика конфиденциальности</a></li>
                     </ul>
                 </div>
@@ -239,6 +240,12 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2025 История России. Все права защищены.</p>
+                <div style="margin-top: 1rem; display: flex; gap: 1rem; align-items: center; flex-wrap: wrap;">
+                    <button id="currentTimeBtn" onclick="showCurrentTime()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.875rem;">
+                        Узнать текущее время
+                    </button>
+                    <div id="geolocationInfo" style="color: #ecf0f1; font-size: 0.875rem;"></div>
+                </div>
             </div>
         </div>
     </footer>
@@ -323,7 +330,55 @@
             });
         });
 
-        // Валидация формы - Лабораторная работа №5
+        // Задание 2 - Лабораторная работа №6: Кнопка текущего времени
+        window.showCurrentTime = function() {
+            const now = new Date();
+            const dateTime = now.toLocaleString('ru-RU', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+            alert('Текущие дата и время:\n' + dateTime);
+        };
+
+        // Задание 4 - Лабораторная работа №6: Получить координаты и расстояние до НГТУ
+        function getDistanceToNGTU() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const userLat = position.coords.latitude;
+                    const userLon = position.coords.longitude;
+                    
+                    // Координаты 1 корпуса НГТУ (Новосибирск)
+                    const ngtuLat = 55.0286;
+                    const ngtuLon = 82.9064;
+                    
+                    // Формула гаверсинуса для расчета расстояния
+                    const R = 6371; // Радиус Земли в километрах
+                    const dLat = (ngtuLat - userLat) * Math.PI / 180;
+                    const dLon = (ngtuLon - userLon) * Math.PI / 180;
+                    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                            Math.cos(userLat * Math.PI / 180) * Math.cos(ngtuLat * Math.PI / 180) *
+                            Math.sin(dLon/2) * Math.sin(dLon/2);
+                    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                    const distance = R * c;
+                    
+                    const geolocationInfo = document.getElementById('geolocationInfo');
+                    geolocationInfo.innerHTML = `Расстояние до 1 корпуса НГТУ: ${distance.toFixed(2)} км`;
+                }, function(error) {
+                    const geolocationInfo = document.getElementById('geolocationInfo');
+                    geolocationInfo.innerHTML = 'Не удалось получить местоположение';
+                    console.error('Ошибка геолокации:', error);
+                });
+            } else {
+                const geolocationInfo = document.getElementById('geolocationInfo');
+                geolocationInfo.innerHTML = 'Геолокация не поддерживается вашим браузером';
+            }
+        }
+
+        // Задание 3 - Лабораторная работа №6: Обработчик формы контактов с localStorage
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('contactForm');
             const nameInput = document.getElementById('name');
@@ -331,6 +386,23 @@
             const phoneInput = document.getElementById('phone');
             const messageInput = document.getElementById('message');
             const agreeInput = document.getElementById('agree');
+            
+            // Загрузка сохраненных данных при загрузке страницы
+            const savedData = localStorage.getItem('contactFormData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                
+                // Показываем приветствие
+                const greeting = document.createElement('div');
+                greeting.style.cssText = 'background: #e8f5e9; padding: 1rem; border-radius: 6px; margin-bottom: 1rem; color: #2e7d32; font-weight: 500;';
+                greeting.textContent = `Добрый день, ${data.name}!`;
+                form.parentElement.insertBefore(greeting, form);
+                
+                // Заполняем поле отзыва
+                if (messageInput && data.message) {
+                    messageInput.value = data.message;
+                }
+            }
 
             // Валидация только email - Лабораторная работа №5
             function validateEmail() {
@@ -359,7 +431,7 @@
                 }
             });
 
-            // Обработка отправки формы - валидация только email
+            // Обработка отправки формы - Задание 3 - Лабораторная работа №6
             form.addEventListener('submit', function(e) {
                 e.preventDefault();
                 
@@ -367,7 +439,7 @@
                 const isAgreeValid = agreeInput.checked;
                 
                 if (isEmailValid && isAgreeValid) {
-                    // Сохранение в localStorage
+                    // Получаем введенные данные
                     const formData = {
                         name: nameInput ? nameInput.value.trim() : '',
                         email: emailInput.value.trim(),
@@ -378,22 +450,22 @@
                         date: new Date().toISOString()
                     };
                     
-                    // Получаем существующие данные или создаем новый массив
+                    // Сохраняем данные в localStorage
+                    localStorage.setItem('contactFormData', JSON.stringify(formData));
+                    
+                    // Получаем существующие данные или создаем новый массив для истории
                     let contacts = JSON.parse(localStorage.getItem('contacts') || '[]');
                     contacts.push(formData);
                     localStorage.setItem('contacts', JSON.stringify(contacts));
                     
+                    // Скрываем форму
+                    form.style.display = 'none';
+                    
                     // Показываем сообщение об успехе
                     const successMessage = document.getElementById('formSuccess');
-                    successMessage.classList.add('show');
-                    
-                    // Очищаем форму
-                    form.reset();
-                    
-                    // Скрываем сообщение через 5 секунд
-                    setTimeout(() => {
-                        successMessage.classList.remove('show');
-                    }, 5000);
+                    if (successMessage) {
+                        successMessage.style.display = 'block';
+                    }
                 } else {
                     // Прокрутка к ошибке email, если она есть
                     if (!isEmailValid) {
@@ -403,6 +475,9 @@
                     }
                 }
             });
+            
+            // Автоматически получаем расстояние при загрузке страницы
+            getDistanceToNGTU();
 
             // Форма подписки
             const subscribeForm = document.getElementById('subscribeForm');

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Лабораторная работа №5 - Объекты и массивы</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            border-left: 4px solid #667eea;
+            padding-left: 15px;
+        }
+        .task {
+            background-color: #f8f9fa;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border-left: 4px solid #667eea;
+        }
+        .task-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .code-block {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .result {
+            background-color: #e8f5e9;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border-left: 4px solid #4caf50;
+        }
+        .result-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 5px;
+        }
+        pre {
+            margin: 0;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Лабораторная работа №5</h1>
+        <h2>Объекты и массивы</h2>
+        
+        <div class="task">
+            <div class="task-title">Цель работы:</div>
+            <p>Освоить применение объектов и массивов JS</p>
+        </div>
+
+        <div id="results"></div>
+    </div>
+
+    <script>
+        // Функция для вывода результатов
+        const resultsDiv = document.getElementById('results');
+        
+        function addResult(taskNum, taskText, code, result) {
+            const taskDiv = document.createElement('div');
+            taskDiv.className = 'task';
+            taskDiv.innerHTML = `
+                <div class="task-title">Задание ${taskNum}</div>
+                <p>${taskText}</p>
+                <div class="code-block"><pre>${code}</pre></div>
+                <div class="result">
+                    <div class="result-title">Результат:</div>
+                    <pre>${result}</pre>
+                </div>
+            `;
+            resultsDiv.appendChild(taskDiv);
+        }
+
+        // Задание 1
+        let obj = {a: 1, b: 2, c: 3};
+        const code1 = `let obj = {a: 1, b: 2, c: 3};
+console.log(obj['c']); // через квадратные скобки
+console.log(obj.c);    // как свойство объекта`;
+        const result1 = `obj['c'] = ${obj['c']}\nobj.c = ${obj.c}`;
+        addResult(1, "Создайте объект let obj = {a: 1, b: 2, c: 3}. Выведите на экран элемент с ключом 'c' двумя способами: через квадратные скобки и как свойство объекта", code1, result1);
+
+        // Задание 2
+        const daysOfWeek = {
+            1: 'Понедельник',
+            2: 'Вторник',
+            3: 'Среда',
+            4: 'Четверг',
+            5: 'Пятница',
+            6: 'Суббота',
+            7: 'Воскресенье'
+        };
+        const today = new Date().getDay();
+        const currentDay = today === 0 ? 7 : today; // Воскресенье = 0, нужно преобразовать в 7
+        const code2 = `const daysOfWeek = {
+    1: 'Понедельник',
+    2: 'Вторник',
+    3: 'Среда',
+    4: 'Четверг',
+    5: 'Пятница',
+    6: 'Суббота',
+    7: 'Воскресенье'
+};
+const today = new Date().getDay();
+const currentDay = today === 0 ? 7 : today;
+console.log(daysOfWeek[currentDay]);`;
+        const result2 = `Текущий день недели: ${daysOfWeek[currentDay]}`;
+        addResult(2, "Создайте объект с днями недели. Ключами в нем должны служить номера дней от начала недели (понедельник - первый и т.д.). Выведите на экран текущий день недели.", code2, result2);
+
+        // Задание 3
+        const arr3 = [];
+        for (let i = 0; i < 20; i++) {
+            arr3.push(Math.floor(Math.random() * 100));
+        }
+        const sum3 = arr3.reduce((a, b) => a + b, 0);
+        const avg3 = sum3 / arr3.length;
+        const code3 = `const arr = [];
+for (let i = 0; i < 20; i++) {
+    arr.push(Math.floor(Math.random() * 100));
+}
+const sum = arr.reduce((a, b) => a + b, 0);
+const avg = sum / arr.length;`;
+        const result3 = `Массив: [${arr3.join(', ')}]\nСреднее арифметическое: ${avg3.toFixed(2)}`;
+        addResult(3, "Сформируйте массив, состоящий из 20 целых чисел. Найдите среднее арифметическое его элементов.", code3, result3);
+
+        // Задание 4
+        const arr4a = ['a', 'b', 'c'];
+        const arr4b = [1, 2, 3];
+        const arr4combined = arr4a.concat(arr4b);
+        const code4 = `const arr1 = ['a', 'b', 'c'];
+const arr2 = [1, 2, 3];
+const combined = arr1.concat(arr2);`;
+        const result4 = `Результат: [${arr4combined.join(', ')}]`;
+        addResult(4, "Даны два массива: ['a', 'b', 'c'] и [1, 2, 3]. Объедините их вместе с помощью метода concat.", code4, result4);
+
+        // Задание 5
+        const arr5 = ['a', 'b', 'c'];
+        arr5.push(1, 2, 3);
+        const code5 = `const arr = ['a', 'b', 'c'];
+arr.push(1, 2, 3);`;
+        const result5 = `Результат: [${arr5.join(', ')}]`;
+        addResult(5, "Дан массив ['a', 'b', 'c']. Добавьте ему в конец элементы 1, 2, 3", code5, result5);
+
+        // Задание 6
+        const arr6 = [1, 2, 3];
+        const arr6reversed = arr6.slice().reverse();
+        const code6 = `const arr = [1, 2, 3];
+const reversed = arr.slice().reverse();`;
+        const result6 = `Исходный: [${arr6.join(', ')}]\nРезультат: [${arr6reversed.join(', ')}]`;
+        addResult(6, "Дан массив [1, 2, 3]. Сформируйте из него массив [3, 2, 1].", code6, result6);
+
+        // Задание 7
+        const arr7 = [1, 2, 3];
+        arr7.unshift(4, 5, 6);
+        const code7 = `const arr = [1, 2, 3];
+arr.unshift(4, 5, 6);`;
+        const result7 = `Результат: [${arr7.join(', ')}]`;
+        addResult(7, "Дан массив [1, 2, 3]. Добавьте ему в начало элементы 4, 5, 6.", code7, result7);
+
+        // Задание 8
+        const arr8 = ['js', 'css', 'jq'];
+        const code8 = `const arr = ['js', 'css', 'jq'];
+console.log(arr[0]);        // первый элемент
+console.log(arr[arr.length - 1]); // последний элемент`;
+        const result8 = `Первый элемент: ${arr8[0]}\nПоследний элемент: ${arr8[arr8.length - 1]}`;
+        addResult(8, "Дан массив ['js', 'css', 'jq']. Выведите на экран первый и последний элемент.", code8, result8);
+
+        // Задание 9
+        const arr9 = [1, 2, 3, 4, 5];
+        const arr9slice = arr9.slice(3);
+        const code9 = `const arr = [1, 2, 3, 4, 5];
+const newArr = arr.slice(3);`;
+        const result9 = `Исходный: [${arr9.join(', ')}]\nРезультат: [${arr9slice.join(', ')}]`;
+        addResult(9, "Дан массив [1, 2, 3, 4, 5]. С помощью метода slice запишите в новый массив элементы [4, 5].", code9, result9);
+
+        // Задание 10
+        const arr10 = [1, 2, 3, 4, 5];
+        arr10.splice(3, 0, 'a', 'b', 'c');
+        const code10 = `const arr = [1, 2, 3, 4, 5];
+arr.splice(3, 0, 'a', 'b', 'c');`;
+        const result10 = `Результат: [${arr10.join(', ')}]`;
+        addResult(10, "Дан массив [1, 2, 3, 4, 5]. С помощью метода splice преобразуйте его в [1, 2, 3, 'a', 'b', 'c', 4, 5].", code10, result10);
+
+        // Задание 11
+        const arr11 = [3, 4, 1, 2, 7];
+        const arr11sorted = arr11.slice().sort((a, b) => a - b);
+        const code11 = `const arr = [3, 4, 1, 2, 7];
+const sorted = arr.slice().sort((a, b) => a - b);`;
+        const result11 = `Исходный: [${arr11.join(', ')}]\nОтсортированный: [${arr11sorted.join(', ')}]`;
+        addResult(11, "Дан массив [3, 4, 1, 2, 7]. Отсортируйте его.", code11, result11);
+
+        // Задание 12
+        const obj12 = {js: 'test', jq: 'hello', css: 'world'};
+        const keys12 = Object.keys(obj12);
+        const code12 = `const obj = {js: 'test', jq: 'hello', css: 'world'};
+const keys = Object.keys(obj);`;
+        const result12 = `Ключи объекта: [${keys12.join(', ')}]`;
+        addResult(12, "Дан объект {js:'test', jq: 'hello', css: 'world'}. Получите массив его ключей. (используйте Object.keys)", code12, result12);
+
+        // Задание 13
+        const arr13 = [];
+        for (let i = 0; i < 10; i++) {
+            arr13.push(Math.floor(Math.random() * 21));
+        }
+        const has5 = arr13.includes(5);
+        const code13 = `const arr = [];
+for (let i = 0; i < 10; i++) {
+    arr.push(Math.floor(Math.random() * 21));
+}
+const has5 = arr.includes(5);
+console.log(has5 ? 'да' : 'нет');`;
+        const result13 = `Массив: [${arr13.join(', ')}]\nРезультат: ${has5 ? 'да' : 'нет'}`;
+        addResult(13, "Сформируйте случайный массив с числами от 0 до 20 используя Math.random() и Math.floor(). С помощью метода includes проверьте, что в этом массиве есть число 5. Если есть - выведите 'да', а если нет - выведите 'нет'.", code13, result13);
+
+        // Задание 14
+        const arr14 = [];
+        for (let i = 0; i < 20; i++) {
+            arr14.push(Math.floor(Math.random() * 101) - 50);
+        }
+        const arr14filtered = arr14.filter(num => num > 0 && num < 10);
+        const code14 = `const arr = [];
+for (let i = 0; i < 20; i++) {
+    arr.push(Math.floor(Math.random() * 101) - 50);
+}
+const filtered = arr.filter(num => num > 0 && num < 10);`;
+        const result14 = `Исходный массив: [${arr14.join(', ')}]\nОтфильтрованный (0 < x < 10): [${arr14filtered.join(', ')}]`;
+        addResult(14, "Сформируйте массив с случайными числами от -50 до +50. Запишите в новый массив только те числа, которые больше нуля и меньше 10-ти. Используйте для этого метод filter.", code14, result14);
+
+        // Задание 15
+        const arr15 = [23, 34, 22, 9, 11];
+        const arr15squared = arr15.map(num => num * num);
+        const code15 = `const arr = [23, 34, 22, 9, 11];
+const squared = arr.map(num => num * num);`;
+        const result15 = `Исходный: [${arr15.join(', ')}]\nВ квадрате: [${arr15squared.join(', ')}]`;
+        addResult(15, "Дан массив let arr = [23, 34, 22, 9, 11]. С помощью метода map получите новый массив, каждый элемент которого возведен в квадрат.", code15, result15);
+
+        // Задание 16
+        const person16 = {
+            name: 'Иван',
+            sayHello: function() {
+                return `Привет, меня зовут ${this.name}`;
+            }
+        };
+        const code16 = `const person = {
+    name: 'Иван',
+    sayHello: function() {
+        return 'Привет, меня зовут ' + this.name;
+    }
+};
+person.sayHello();`;
+        const result16 = person16.sayHello();
+        addResult(16, "Создайте объект, в котором хранится Ваше имя в поле name и метод sayHello, при вызове которого выводится alert с приветствием «Привет, меня зовут ваше_имя». Продемонстрируйте вызов этого метода.", code16, result16);
+
+        // Задание 17
+        const numberStore = {
+            numbers: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20],
+            checkAndAdd: function(num) {
+                if (this.numbers.includes(num)) {
+                    return num;
+                } else {
+                    this.numbers.push(num);
+                    return `Число ${num} не найдено, добавлено в массив. Новый массив: [${this.numbers.join(', ')}]`;
+                }
+            }
+        };
+        const test17a = numberStore.checkAndAdd(5);
+        const test17b = numberStore.checkAndAdd(25);
+        const code17 = `const numberStore = {
+    numbers: [0, 1, 2, ..., 20],
+    checkAndAdd: function(num) {
+        if (this.numbers.includes(num)) {
+            return num;
+        } else {
+            this.numbers.push(num);
+            return 'Число не найдено, добавлено в массив';
+        }
+    }
+};
+numberStore.checkAndAdd(5);  // вернет 5
+numberStore.checkAndAdd(25); // добавит 25 и вернет сообщение`;
+        const result17 = `Проверка числа 5: ${test17a}\nПроверка числа 25: ${test17b}`;
+        addResult(17, "Создайте объект, который хранит числа от 0 до 20. Добавьте метод, который проверяет, имеется ли переданное число в массиве. Если переданное число имеется, то метод должен его вернуть, в противном случае функция должна вывести сообщение об этом и добавить элемент в массив. Продемонстрируйте работу этого метода.", code17, result17);
+
+        // Задание 18
+        function Student(firstName, lastName) {
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.sayHello = function() {
+                return `${this.firstName} ${this.lastName}`;
+            };
+        }
+        const student1 = new Student('Юрий', 'Авдеев');
+        const code18 = `function Student(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.sayHello = function() {
+        return this.firstName + ' ' + this.lastName;
+    };
+}
+const student1 = new Student('Юрий', 'Авдеев');
+student1.sayHello();`;
+        const result18 = `student1.sayHello(): ${student1.sayHello()}`;
+        addResult(18, "Создайте функцию-конструктор, которая создает объект студента. Функция должна принимать Имя и Фамилию и иметь метод sayHello, который выводит приветствие вида «Привет, меня зовут Имя». Продемонстрируйте создание объектов и работу метода sayHello для каждого созданного объекта.", code18, result18);
+    </script>
+</body>
+</html>
+
