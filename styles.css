@@ -1490,6 +1490,372 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
+/* Адаптивные таблицы для мобильных устройств (до 600px) */
+@media (max-width: 600px) {
+    body, html {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+    
+    .container {
+        overflow-x: hidden;
+        max-width: 100%;
+        padding: 0 15px;
+    }
+    
+    .table-container {
+        overflow-x: visible !important;
+        overflow-y: visible !important;
+        -webkit-overflow-scrolling: auto;
+        width: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    .table {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        font-size: 0.875rem;
+    }
+    
+    .table thead {
+        display: none;
+    }
+    
+    .table tbody {
+        display: block;
+        width: 100%;
+    }
+    
+    .table tbody tr {
+        display: block;
+        margin-bottom: 0.5rem;
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-sm);
+        background: var(--color-bg);
+        padding: 0;
+        box-shadow: var(--shadow-sm);
+        cursor: pointer;
+        transition: all var(--transition-base);
+        overflow: hidden;
+    }
+    
+    .table tbody tr.collapsed .table-row-details {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+    }
+    
+    .table tbody tr.expanded .table-row-details {
+        max-height: 2000px;
+        opacity: 1;
+        transition: max-height 0.4s ease-in, opacity 0.4s ease-in;
+    }
+    
+    .table tbody tr:nth-child(even) {
+        background-color: var(--color-bg);
+    }
+    
+    .table tbody tr:nth-child(even):hover {
+        background-color: var(--color-bg-light);
+    }
+    
+    /* Заголовок строки (первая колонка) - всегда видимый */
+    /* Используем селектор > чтобы применить только к прямой первой ячейке строки, а не к ячейкам внутри контейнера деталей */
+    .table tbody tr > td:first-child {
+        display: block;
+        width: 100%;
+        padding: 1rem;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid var(--color-border);
+        position: relative;
+        font-weight: 600;
+        color: var(--color-primary);
+        background-color: var(--color-bg-light);
+        cursor: pointer;
+        user-select: none;
+    }
+    
+    .table tbody tr > td:first-child::after {
+        content: '▼';
+        position: absolute;
+        right: 1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 0.75rem;
+        color: var(--color-accent);
+        transition: transform var(--transition-base);
+    }
+    
+    .table tbody tr.expanded > td:first-child::after {
+        transform: translateY(-50%) rotate(180deg);
+    }
+    
+    /* Детали строки - скрываются по умолчанию */
+    .table-row-details {
+        display: block;
+        width: 100%;
+    }
+    
+    .table td:not(:first-child) {
+        display: block;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        text-align: left;
+        border: none;
+        border-bottom: 1px solid var(--color-border);
+        position: relative;
+        padding-left: 35%;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        min-height: 2.5rem;
+        background-color: var(--color-bg);
+    }
+    
+    .table td:not(:first-child):last-child {
+        border-bottom: none;
+    }
+    
+    .table td:not(:first-child)::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 1rem;
+        top: 0.75rem;
+        font-weight: 600;
+        color: var(--color-primary);
+        width: 30%;
+        text-align: left;
+        font-size: 0.8rem;
+        line-height: 1.4;
+    }
+    
+    /* Стили для четных строк в карточном виде */
+    .table tbody tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+    
+    .table tbody tr:nth-child(even) > td:first-child {
+        background-color: #e9ecef;
+    }
+    
+    .table tbody tr:hover {
+        box-shadow: var(--shadow-md);
+    }
+    
+    .table tbody tr:hover > td:first-child {
+        background-color: var(--color-bg-light);
+    }
+    
+    /* Убираем стрелку у ячеек внутри контейнера деталей */
+    .table-row-details td::after {
+        display: none !important;
+    }
+    
+    /* Темная тема для выпадающих списков */
+    body.dark-theme .table tbody tr {
+        background: #2d2d2d;
+        border-color: #404040;
+    }
+    
+    body.dark-theme .table tbody tr:nth-child(even) {
+        background-color: #2d2d2d;
+    }
+    
+    body.dark-theme .table tbody tr:nth-child(even) > td:first-child {
+        background-color: #404040;
+    }
+    
+    body.dark-theme .table tbody tr > td:first-child {
+        background-color: #404040;
+        color: #e0e0e0;
+        border-bottom-color: #505050;
+    }
+    
+    body.dark-theme .table td:not(:first-child) {
+        background-color: #2d2d2d;
+        color: #e0e0e0;
+        border-bottom-color: #404040;
+    }
+    
+    body.dark-theme .table td:not(:first-child)::before {
+        color: #e0e0e0;
+    }
+    
+    body.dark-theme .table tbody tr:hover > td:first-child {
+        background-color: #505050;
+    }
+    
+    body.dark-theme .table tbody tr:hover {
+        background-color: #2d2d2d;
+    }
+}
+
+/* Дополнительные стили для очень маленьких экранов (до 400px) */
+@media (max-width: 400px) {
+    .table td {
+        padding-left: 32%;
+        font-size: 0.8rem;
+    }
+    
+    .table td::before {
+        width: 28%;
+        font-size: 0.75rem;
+    }
+}
+
+/* Стили для экранов до 344px */
+@media (max-width: 344px) {
+    * {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+    
+    body, html {
+        overflow-x: hidden !important;
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .main {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+    
+    .container {
+        padding: 0 10px;
+        overflow-x: hidden;
+        max-width: 100%;
+        width: 100%;
+    }
+    
+    .table-container {
+        margin-left: -10px;
+        margin-right: -10px;
+        width: calc(100% + 20px);
+        max-width: calc(100% + 20px);
+        overflow-x: visible !important;
+    }
+    
+    .table {
+        font-size: 0.75rem;
+    }
+    
+    .table tbody tr {
+        margin-bottom: 0.75rem;
+        border-radius: 6px;
+    }
+    
+    .table td {
+        padding: 0.5rem 0.75rem;
+        padding-left: 30%;
+        font-size: 0.7rem;
+        min-height: 2rem;
+        line-height: 1.3;
+    }
+    
+    .table td::before {
+        left: 0.75rem;
+        top: 0.5rem;
+        width: 26%;
+        font-size: 0.65rem;
+        line-height: 1.2;
+        font-weight: 700;
+    }
+    
+    .table tbody tr:nth-child(even) {
+        background-color: #f8f9fa;
+    }
+    
+    /* Уменьшаем отступы для контентных секций */
+    .content-section {
+        padding: 1.5rem 0;
+    }
+    
+    .content-section h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Компактные стили для фильтров и сортировки */
+    .filter-sort-container {
+        flex-direction: column;
+        gap: 0.75rem;
+        margin: 1rem 0;
+    }
+    
+    .filter-select,
+    .sort-select {
+        width: 100%;
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+    }
+    
+    /* Темная тема для экранов до 344px */
+    body.dark-theme .table tbody tr {
+        background: #2d2d2d;
+        border-color: #404040;
+    }
+    
+    body.dark-theme .table tbody tr:nth-child(even) {
+        background-color: #2d2d2d;
+    }
+    
+    body.dark-theme .table tbody tr:hover {
+        background-color: #404040;
+    }
+    
+    body.dark-theme .table td {
+        border-bottom-color: #404040;
+        color: #e0e0e0;
+    }
+    
+    body.dark-theme .table td::before {
+        color: #e0e0e0;
+    }
+    
+    /* Дополнительные стили для предотвращения горизонтальной прокрутки */
+    .content-section {
+        overflow-x: hidden;
+        max-width: 100%;
+    }
+    
+    .media-grid {
+        overflow-x: hidden;
+    }
+    
+    .gallery-grid {
+        overflow-x: hidden;
+    }
+    
+    .figures-grid {
+        overflow-x: hidden;
+    }
+    
+    /* Уменьшаем размеры изображений и медиа */
+    .media-image,
+    .media-video {
+        max-width: 100%;
+        height: auto;
+    }
+    
+    .gallery-item img {
+        max-width: 100%;
+    }
+    
+    /* Компактные стили для заголовков страниц */
+    .page-title {
+        font-size: 1.75rem;
+    }
+    
+    .page-subtitle {
+        font-size: 0.9rem;
+    }
+}
+
 /* Gallery/Lightbox Styles - Лабораторная работа №6 */
 .gallery-grid {
     display: grid;
@@ -1929,6 +2295,31 @@ body.dark-theme .content-section p {
 body.dark-theme .info-box {
     background: linear-gradient(135deg, #2d2d2d 0%, #404040 100%);
     border-left-color: var(--color-ancient-rus);
+}
+
+/* Темная тема для адаптивных таблиц на мобильных устройствах */
+@media (max-width: 600px) {
+    body.dark-theme .table tbody tr {
+        background: #2d2d2d;
+        border-color: #404040;
+    }
+    
+    body.dark-theme .table tbody tr:nth-child(even) {
+        background-color: #2d2d2d;
+    }
+    
+    body.dark-theme .table tbody tr:hover {
+        background-color: #404040;
+    }
+    
+    body.dark-theme .table td {
+        border-bottom-color: #404040;
+        color: #e0e0e0;
+    }
+    
+    body.dark-theme .table td::before {
+        color: #e0e0e0;
+    }
 }
 
 body.dark-theme .theme-toggle {

@@ -1021,6 +1021,26 @@
                         row.style.display = 'none';
                     }
                 }
+                
+                // Переинициализируем выпадающие списки после фильтрации
+                if (window.innerWidth <= 600) {
+                    setTimeout(function() {
+                        document.querySelectorAll('#rulersTableBody tr').forEach(row => {
+                            if (row.style.display !== 'none') {
+                                row.classList.remove('table-row-processed', 'collapsed', 'expanded');
+                                const detailsContainer = row.querySelector('.table-row-details');
+                                if (detailsContainer) {
+                                    const cells = Array.from(detailsContainer.children);
+                                    cells.forEach(cell => {
+                                        detailsContainer.parentNode.insertBefore(cell, detailsContainer);
+                                    });
+                                    detailsContainer.remove();
+                                }
+                            }
+                        });
+                        initCollapsibleTables();
+                    }, 100);
+                }
             };
 
             // Сортировка таблицы правителей
@@ -1049,6 +1069,25 @@
                 // Очищаем таблицу и добавляем отсортированные строки
                 table.innerHTML = '';
                 rows.forEach(row => table.appendChild(row));
+                
+                // Обновляем data-label атрибуты после сортировки
+                addDataLabelsToTables();
+                
+                // Переинициализируем выпадающие списки
+                setTimeout(function() {
+                    document.querySelectorAll('#rulersTableBody tr').forEach(row => {
+                        row.classList.remove('table-row-processed', 'collapsed', 'expanded');
+                        const detailsContainer = row.querySelector('.table-row-details');
+                        if (detailsContainer) {
+                            const cells = Array.from(detailsContainer.children);
+                            cells.forEach(cell => {
+                                detailsContainer.parentNode.insertBefore(cell, detailsContainer);
+                            });
+                            detailsContainer.remove();
+                        }
+                    });
+                    initCollapsibleTables();
+                }, 100);
             };
 
             // Фильтрация таблицы статистики
@@ -1066,6 +1105,26 @@
                     } else {
                         row.style.display = 'none';
                     }
+                }
+                
+                // Переинициализируем выпадающие списки после фильтрации
+                if (window.innerWidth <= 600) {
+                    setTimeout(function() {
+                        document.querySelectorAll('#statsTableBody tr').forEach(row => {
+                            if (row.style.display !== 'none') {
+                                row.classList.remove('table-row-processed', 'collapsed', 'expanded');
+                                const detailsContainer = row.querySelector('.table-row-details');
+                                if (detailsContainer) {
+                                    const cells = Array.from(detailsContainer.children);
+                                    cells.forEach(cell => {
+                                        detailsContainer.parentNode.insertBefore(cell, detailsContainer);
+                                    });
+                                    detailsContainer.remove();
+                                }
+                            }
+                        });
+                        initCollapsibleTables();
+                    }, 100);
                 }
             };
 
@@ -1095,6 +1154,25 @@
                 // Очищаем таблицу и добавляем отсортированные строки
                 table.innerHTML = '';
                 rows.forEach(row => table.appendChild(row));
+                
+                // Обновляем data-label атрибуты после сортировки
+                addDataLabelsToTables();
+                
+                // Переинициализируем выпадающие списки
+                setTimeout(function() {
+                    document.querySelectorAll('#statsTableBody tr').forEach(row => {
+                        row.classList.remove('table-row-processed', 'collapsed', 'expanded');
+                        const detailsContainer = row.querySelector('.table-row-details');
+                        if (detailsContainer) {
+                            const cells = Array.from(detailsContainer.children);
+                            cells.forEach(cell => {
+                                detailsContainer.parentNode.insertBefore(cell, detailsContainer);
+                            });
+                            detailsContainer.remove();
+                        }
+                    });
+                    initCollapsibleTables();
+                }, 100);
             };
 
             // Интерактивная временная шкала - Лабораторная работа №6
@@ -1209,6 +1287,110 @@
 
             // Загрузка темы при загрузке страницы
             loadTheme();
+
+            // Добавление data-label атрибутов для адаптивных таблиц на мобильных устройствах
+            window.addDataLabelsToTables = function() {
+                const tables = document.querySelectorAll('.table');
+                tables.forEach(table => {
+                    const headers = table.querySelectorAll('thead th');
+                    const rows = table.querySelectorAll('tbody tr');
+                    
+                    headers.forEach((header, index) => {
+                        const label = header.textContent.trim();
+                        rows.forEach(row => {
+                            const cell = row.cells[index];
+                            if (cell) {
+                                cell.setAttribute('data-label', label);
+                            }
+                        });
+                    });
+                });
+            };
+
+            // Вызов функции при загрузке страницы
+            addDataLabelsToTables();
+
+            // Преобразование таблиц в выпадающие списки на мобильных устройствах (до 600px)
+            function initCollapsibleTables() {
+                // Проверяем ширину экрана
+                if (window.innerWidth <= 600) {
+                    const tables = document.querySelectorAll('.table');
+                    tables.forEach(table => {
+                        const rows = table.querySelectorAll('tbody tr');
+                        rows.forEach(row => {
+                            // Проверяем, не обработана ли уже эта строка
+                            if (row.classList.contains('table-row-processed')) {
+                                return;
+                            }
+                            
+                            // Пропускаем скрытые строки
+                            if (row.style.display === 'none') {
+                                return;
+                            }
+                            
+                            // Получаем все ячейки строки
+                            const cells = Array.from(row.cells);
+                            if (cells.length === 0) return;
+                            
+                            // Первая ячейка - заголовок
+                            const headerCell = cells[0];
+                            
+                            // Остальные ячейки - детали
+                            const detailCells = cells.slice(1);
+                            
+                            if (detailCells.length > 0) {
+                                // Создаем контейнер для деталей
+                                const detailsContainer = document.createElement('div');
+                                detailsContainer.className = 'table-row-details';
+                                
+                                // Перемещаем детали в контейнер
+                                detailCells.forEach(cell => {
+                                    detailsContainer.appendChild(cell);
+                                });
+                                
+                                // Добавляем контейнер после заголовка
+                                headerCell.parentNode.insertBefore(detailsContainer, headerCell.nextSibling);
+                                
+                                // Добавляем класс collapsed по умолчанию
+                                row.classList.add('collapsed');
+                                row.classList.add('table-row-processed');
+                                
+                                // Добавляем обработчик клика на заголовок
+                                headerCell.addEventListener('click', function(e) {
+                                    e.stopPropagation();
+                                    row.classList.toggle('collapsed');
+                                    row.classList.toggle('expanded');
+                                });
+                            }
+                        });
+                    });
+                }
+            }
+
+            // Инициализация выпадающих списков при загрузке
+            initCollapsibleTables();
+
+            // Переинициализация при изменении размера окна
+            let resizeTimer;
+            window.addEventListener('resize', function() {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function() {
+                    // Удаляем обработку со всех строк для переинициализации
+                    document.querySelectorAll('.table tbody tr').forEach(row => {
+                        row.classList.remove('table-row-processed', 'collapsed', 'expanded');
+                        const detailsContainer = row.querySelector('.table-row-details');
+                        if (detailsContainer) {
+                            // Возвращаем ячейки обратно в строку
+                            const cells = Array.from(detailsContainer.children);
+                            cells.forEach(cell => {
+                                detailsContainer.parentNode.insertBefore(cell, detailsContainer);
+                            });
+                            detailsContainer.remove();
+                        }
+                    });
+                    initCollapsibleTables();
+                }, 250);
+            });
 
             // Форма подписки
             const subscribeForm = document.getElementById('subscribeForm');
