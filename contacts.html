@@ -250,7 +250,6 @@
                     <button id="distanceBtn" onclick="getDistanceToNGTU()" style="padding: 0.5rem 1rem; background: #667eea; color: white; border: none; border-radius: 6px; cursor: pointer; font-size: 0.875rem;">
                         Расстояние до НГТУ
                     </button>
-                    <div id="geolocationInfo" style="color: #ecf0f1; font-size: 0.875rem;"></div>
                 </div>
             </div>
         </div>
@@ -352,12 +351,6 @@
 
         // Задание 4 - Лабораторная работа №6: Получить координаты и расстояние до НГТУ
         window.getDistanceToNGTU = function() {
-            const geolocationInfo = document.getElementById('geolocationInfo');
-            if (!geolocationInfo) return;
-            
-            // Показываем индикатор загрузки
-            geolocationInfo.innerHTML = 'Определение расстояния...';
-            
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function(position) {
                     const userLat = position.coords.latitude;
@@ -378,11 +371,9 @@
                     const distance = R * c;
                     
                     const distanceText = `Расстояние до 1 корпуса НГТУ: ${distance.toFixed(2)} км`;
-                    geolocationInfo.innerHTML = distanceText;
                     alert(distanceText);
                 }, function(error) {
                     const errorText = 'Не удалось получить местоположение';
-                    geolocationInfo.innerHTML = errorText;
                     alert(errorText);
                     console.error('Ошибка геолокации:', error);
                 }, {
@@ -392,7 +383,6 @@
                 });
             } else {
                 const errorText = 'Геолокация не поддерживается вашим браузером';
-                geolocationInfo.innerHTML = errorText;
                 alert(errorText);
             }
         }
@@ -495,9 +485,6 @@
                 }
             });
             
-            // Автоматически получаем расстояние при загрузке страницы
-            getDistanceToNGTU();
-
             // Форма подписки
             const subscribeForm = document.getElementById('subscribeForm');
             if (subscribeForm) {
