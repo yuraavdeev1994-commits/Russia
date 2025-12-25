@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maze Game 3D - История России</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: #1a1a1a;
+        }
+        #game-container {
+            text-align: center;
+        }
+        canvas {
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <main></main>
+    </div>
+    
+    <script>
+        // Обработка ошибок загрузки скриптов
+        window.addEventListener('error', function(e) {
+            console.error('Ошибка загрузки:', e.filename, e.message, e.lineno, e.colno);
+            console.error('Stack:', e.error ? e.error.stack : 'нет стека');
+        });
+        
+        // Обработка необработанных промисов
+        window.addEventListener('unhandledrejection', function(e) {
+            console.error('Необработанное отклонение промиса:', e.reason);
+        });
+        
+        // Проверка загрузки p5.js
+        window.addEventListener('load', function() {
+            console.log('Все скрипты загружены');
+            if (typeof p5 !== 'undefined') {
+                console.log('p5.js загружен');
+            } else {
+                console.error('p5.js НЕ загружен!');
+            }
+        });
+    </script>
+    <script src="maze-game/GameState.js"></script>
+    <script src="maze-game/Settings.js"></script>
+    <script src="maze-game/Maze.js"></script>
+    <script src="maze-game/Player.js"></script>
+    <script src="maze-game/Exit.js"></script>
+    <script src="maze-game/MazeRenderer.js"></script>
+    <script src="maze-game/Button.js"></script>
+    <script src="maze-game/Checkbox.js"></script>
+    <script src="maze-game/Slider.js"></script>
+    <script src="maze-game/Dropdown.js"></script>
+    <script src="maze-game/Raycaster.js"></script>
+    <script src="maze-game/Menu.js"></script>
+    <script src="maze-game/sketch.js"></script>
+</body>
+</html>
+
